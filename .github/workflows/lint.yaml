@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          poetry install
+          poetry install --no-root
         #   poetry run pip install pytest
 
       # - name: Run linting (pylint)
