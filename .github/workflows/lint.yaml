@@ -1,0 +1,40 @@
+name: Lint and Format Check
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.13.1
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13.1
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: Install dependencies
+        run: |
+          poetry install
+        #   poetry run pip install pytest
+
+      # - name: Run linting (pylint)
+      #   run: poetry run pylint app/ test/
+
+      - name: Run formatting check (black)
+        run: poetry run black --check app/ test/
+
+    #   - name: Run tests (pytest)
+    #     run: poetry run pytest
