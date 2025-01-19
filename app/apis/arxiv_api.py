@@ -47,3 +47,7 @@ def url_helper(
         url = url + f"&sortOrder={sortOrder}"
 
     return url
+
+
+if __name__ == "__main__":
+    print(get_arxiv_data("machine learning"))
