@@ -6,7 +6,7 @@ def get_arxiv_data(
     search_field="all",
     id_list="",
     start=0,
-    max_results=100,
+    max_results=50,
     sortBy="submittedDate",
     sortOrder="descending",
 ):
@@ -47,7 +47,3 @@ def url_helper(
         url = url + f"&sortOrder={sortOrder}"
 
     return url
-
-
-if __name__ == "__main__":
-    print(get_arxiv_data("machine learning"))
