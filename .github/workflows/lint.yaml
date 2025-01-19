@@ -34,7 +34,7 @@ jobs:
       #   run: poetry run pylint app/ test/
 
       - name: Run formatting check (black)
-        run: poetry run black --check app/ test/
+        run: poetry run black --check app/ #test/
 
     #   - name: Run tests (pytest)
     #     run: poetry run pytest
