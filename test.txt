@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://arxiv.org/api/query?search_query%3Dall%3Aquantum%26id_list%3D%26start%3D0%26max_results%3D10" rel="self" type="application/atom+xml"/>
+  <title type="html">ArXiv Query: search_query=all:quantum&amp;id_list=&amp;start=0&amp;max_results=10</title>
+  <id>http://arxiv.org/api/Dro/KDzLOm6T4WQovrJ4G5Zed+k</id>
+  <updated>2025-01-18T00:00:00-05:00</updated>
+  <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">419326</opensearch:totalResults>
+  <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+  <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">10</opensearch:itemsPerPage>
+  <entry>
+    <id>http://arxiv.org/abs/2501.09750v1</id>
+    <updated>2025-01-16T18:57:53Z</updated>
+    <published>2025-01-16T18:57:53Z</published>
+    <title>Coming full circle -- A unified framework for Kochen-Specker
+  contextuality</title>
+    <summary>  Contextuality is a key distinguishing feature between classical and quantum
+physics. It expresses a fundamental obstruction to describing quantum theory
+using classical concepts. In turn, when understood as a resource for quantum
+computation, it is expected to hold the key to quantum advantage. Yet, despite
+its long recognised importance in quantum foundations and, more recently, in
+quantum computation, the mathematics of contextuality has remained somewhat
+elusive - different frameworks address different aspects of the phenomenon, yet
+their precise relationship often is unclear. In fact, there is a glaring
+discrepancy already between the original notion of contextuality introduced by
+Kochen and Specker on the one side [J. Math. Mech., 17, 59, (1967)], and the
+modern approach of studying contextual correlations on the other [Rev. Mod.
+Phys., 94, 045007 (2022)].
+  In a companion paper [arXiv:2408.16764], we introduce the conceptually new
+tool called ``context connections'', which allows to cast and analyse
+Kochen-Specker (KS) contextuality in new form. Here, we generalise this notion,
+and based on it prove a complete characterisation of KS contextuality for
+finite-dimensional systems. To this end, we develop the framework of
+``observable algebras". We show in detail how this framework subsumes the
+marginal and graph-theoretic approaches to contextuality, and thus that it
+offers a unified perspective on KS contextuality. In particular, we establish
+the precise relationships between the various notions of ``contextuality" used
+in the respective settings, and in doing so, generalise a number of results on
+the characterisation of the respective notions in the literature.
+</summary>
+    <author>
+      <name>Markus Frembs</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">54+21 pages, 5 figures, 7 tables</arxiv:comment>
+    <link href="http://arxiv.org/abs/2501.09750v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2501.09750v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.MP" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.09742v1</id>
+    <updated>2025-01-16T18:52:19Z</updated>
+    <published>2025-01-16T18:52:19Z</published>
+    <title>Exact Parent Hamiltonians for All Landau Level States in a Half-flux
+  Lattice</title>
+    <summary>  Realizing topological flat bands with tailored single-particle Hilbert spaces
+is a critical step toward exploring many-body phases, such as those featuring
+anyonic excitations. One prominent example is the Kapit-Mueller model, a
+variant of the Harper-Hofstadter model that stabilizes lattice analogs of the
+lowest Landau level states. The Kapit-Mueller model is constructed based on the
+Poisson summation rule, an exact lattice sum rule for coherent states. In this
+work, we consider higher Landau-level generalizations of the Poisson summation
+rule, from which we derive families of parent Hamiltonians on a half-flux
+lattice which have exact flat bands whose flatband wavefunctions are lattice
+version of higher Landau level states. Focusing on generic Bravais lattices
+with only translation and inversion symmetries, we discuss how these symmetries
+enforced gaplessness and singular points for odd Landau level series, and how
+to achieve fully gapped parent Hamiltonians by mixing even and odd series. Our
+model points to a large class of tight-binding models with suitable energetic
+and quantum geometries that are potentially useful for realizing non-Abelian
+fractionalized states when interactions are included. The model exhibits fast
+decay hopping amplitudes, making it potentially realizable with neutral atoms
+in optical lattices.
+</summary>
+    <author>
+      <name>Xin Shen</name>
+    </author>
+    <author>
+      <name>Guangyue Ji</name>
+    </author>
+    <author>
+      <name>Jinjie Zhang</name>
+    </author>
+    <author>
+      <name>David E. Palomino</name>
+    </author>
+    <author>
+      <name>Bruno Mera</name>
+    </author>
+    <author>
+      <name>Tomoki Ozawa</name>
+    </author>
+    <author>
+      <name>Jie Wang</name>
+    </author>
+    <link href="http://arxiv.org/abs/2501.09742v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2501.09742v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="cond-mat.mes-hall" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cond-mat.mes-hall" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cond-mat.quant-gas" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.MP" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.atom-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.09738v1</id>
+    <updated>2025-01-16T18:44:45Z</updated>
+    <published>2025-01-16T18:44:45Z</published>
+    <title>Partonic distribution functions and amplitudes using tensor network
+  methods</title>
+    <summary>  Calculations of the parton distribution function (PDF) and distribution
+amplitude (DA) are highly relevant to core experimental programs as they
+provide non-perturbative inputs to inclusive and exclusive processes,
+respectively. Direct computation of the PDFs and DAs remains challenging
+because they are non-perturbative quantities defined as light-cone correlators
+of quark and gluon fields, and are therefore inherently time-dependent. In this
+work, we propose a uniform quantum strategy based on tensor network simulation
+techniques to directly extract these hadronic quantities from first principles
+using the matrix product state of the hadrons in the same setup. We present
+exemplary numerical calculations with the Nambu-Jona-Lasinio model in 1+1
+dimensions and compare with available exact diagonalization and quantum circuit
+simulation results. Using tensor networks, we evaluate the PDF and DA at
+various strong couplings in the large-qubit limit, which is consistent with
+expectations at perturbative and non-relativistic limits.
+</summary>
+    <author>
+      <name>Zhong-Bo Kang</name>
+    </author>
+    <author>
+      <name>Noah Moran</name>
+    </author>
+    <author>
+      <name>Peter Nguyen</name>
+    </author>
+    <author>
+      <name>Wenyang Qian</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">19 pages, 4 figures</arxiv:comment>
+    <link href="http://arxiv.org/abs/2501.09738v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2501.09738v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-lat" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="nucl-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.09728v1</id>
+    <updated>2025-01-16T18:22:48Z</updated>
+    <published>2025-01-16T18:22:48Z</published>
+    <title>Bidirectional microwave-optical conversion using an integrated
+  barium-titanate transducer</title>
+    <summary>  Efficient, low-noise, high-bandwidth transduction between optical and
+microwave photons is key to long-range quantum communication between distant
+superconducting quantum processors. Recent demonstrations of microwave-optical
+tranduction using the broadband direct electro-optic (Pockels) effect in
+optical thin films made of AlN or LiNbO$_3$ have shown promise. Due to the
+quadratic scaling of transduction efficiency with the electro-optic
+coefficient, material classes with stronger Pockels effects, such as the
+perovskite titanates BaTiO$_3$ or SrTiO$_3$, may unlock new performance regimes
+for future transducers. However, these materials require adapted designs and
+fabrication approaches due to their nonlinear and, in some cases, hysteretic
+electro-optic response, as well as limited process compatibility. Here, we
+engineer an on-chip, triply resonant transducer comprising low-loss
+BaTiO$_3$-on-SiO$_2$ waveguides monolithically integrated with a
+superconducting microwave resonator made of Nb. Exploiting the bias-induced
+Pockels effect of BaTiO$_3$, we demonstrate bidirectional microwave-optical
+transduction at millikelvin temperatures and total off-chip efficiencies
+reaching $1\times10^{-6}$ in pulsed operation. We establish a device concept
+permitting in-situ poling of the ferroelectric material without introducing
+excess microwave loss and tuning of the optical system without sacrificing
+microwave-optical overlap. Using a fully subtractive process, we fabricate Nb
+air bridges for crossings of conductors and both air- and oxide-clad optical
+waveguides. We investigate optically-induced heating through pulsed optical
+pumping, revealing fast thermalization and quasiparticle resilience of the
+microwave resonator. Our transducer concept is applicable to other materials
+with a large bias-induced Pockels effect and paves the way for efficient,
+low-power quantum interconnects.
+</summary>
+    <author>
+      <name>Charles Möhl</name>
+    </author>
+    <author>
+      <name>Annina Riedhauser</name>
+    </author>
+    <author>
+      <name>Max Glantschnig</name>
+    </author>
+    <author>
+      <name>Daniele Caimi</name>
+    </author>
+    <author>
+      <name>Ute Drechsler</name>
+    </author>
+    <author>
+      <name>Antonis Olziersky</name>
+    </author>
+    <author>
+      <name>Deividas Sabonis</name>
+    </author>
+    <author>
+      <name>David Indolese</name>
+    </author>
+    <author>
+      <name>Thomas Karg</name>
+    </author>
+    <author>
+      <name>Paul Seidler</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">33 pages, 31 figures</arxiv:comment>
+    <link href="http://arxiv.org/abs/2501.09728v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2501.09728v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="physics.optics" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.optics" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cond-mat.mes-hall" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.app-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.09721v1</id>
+    <updated>2025-01-16T18:10:25Z</updated>
+    <published>2025-01-16T18:10:25Z</published>
+    <title>Hybridization between surface flat bands and bulk bands in the
+  topological nodal-line semimetal Sn$_{0.15}$NbSe$_{1.75}$ probed via
+  soft-point-contact spectroscopy</title>
+    <summary>  We report a detailed study of soft-point-contact spectroscopy of the
+superconducting topological nodal-line semimetal Sn$_{0.15}$NbSe$_{1.75}$ with
+the superconducting transition temperature $T_{c}=9.5$ K. In the normal state,
+we observe prominent asymmetric double peaks in the differential conductance
+$dI/dV$. The asymmetric $dI/dV$ curves are attributed to Fano resonance,
+quantum interference between two distinct tunneling paths of transmitting
+electrons into flat energy bands and dispersive bands. A phenomenological
+double Fano resonance model reveals the hybridization between these bands below
+the hybridization temperature $T_{\mathrm{hyb}}=23$ K. This hybridization
+drives an opening of a pseudogap below a characteristic temperature
+$T_{\mathrm{PG}}=6.8$ K. In the superconducting state, we observe an unusual
+upper critical field that increases linearly with decreasing temperatures from
+$0.4T_{c}$ to $0.01T_{c}$, suggestive of a possible exotic superconducting
+state. Our results suggest the presence of surface flat energy bands that stem
+from nontrivial topological nature of nodal lines in the bulk band structure
+and the hybridization between the surface flat bands and bulk bands in
+Sn$_{0.15}$NbSe$_{1.75}$.
+</summary>
+    <author>
+      <name>K. Kumarasinghe</name>
+    </author>
+    <author>
+      <name>C. Dissanayake</name>
+    </author>
+    <author>
+      <name>R. Munir</name>
+    </author>
+    <author>
+      <name>M. Tomlinson</name>
+    </author>
+    <author>
+      <name>Y. Nakajima</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">9 pages, 6 figures</arxiv:comment>
+    <link href="http://arxiv.org/abs/2501.09721v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2501.09721v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="cond-mat.str-el" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cond-mat.str-el" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cond-mat.supr-con" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.09717v1</id>
+    <updated>2025-01-16T18:05:59Z</updated>
+    <published>2025-01-16T18:05:59Z</published>
+    <title>Running EFT-hedron with null constraints at loop level</title>
+    <summary>  Implications of general properties of quantum field theory, such as
+causality, unitarity, and locality include constraints on the couplings of the
+effective field theory (EFT) coefficients. These constraints follow from the
+connections between the infrared (IR) and ultraviolet (UV) theory imposed by
+dispersion relations for four-particle amplitudes which formally allow us to
+express EFT couplings through the moments of positive-definite functions
+(imaginary parts of partial wave amplitudes) forming the EFT-hedron geometry.
+Previous studies of these positivity bounds were mainly focused on the weakly
+coupled EFTs, limiting the analysis to tree-level amplitudes of the IR theory.
+In this work, we extend the scope of positivity bounds including one-loop
+amplitudes, which is essential especially for the loops of massless particles.
+Examining a single scalar theory we found that the presence of massless loops
+cannot be reduced only to the running of EFT couplings because loops modify the
+crossing symmetry relations (null constraints). Our results demonstrate that
+while for small coupling constants, the one-loop bounds are in good agreement
+with the tree-level results, the allowed EFT parameter ranges can be
+significantly modified if a weak coupling assumption is not additionally
+imposed. In particular, we found that an upper bound on dimension-8 coupling
+becomes significantly stronger, and the dimension-12 coupling can be slightly
+negative which was thought to be forbidden by tree-level positivity bounds.
+</summary>
+    <author>
+      <name>Guangzhuo Peng</name>
+    </author>
+    <author>
+      <name>Long-Qi Shao</name>
+    </author>
+    <author>
+      <name>Anna Tokareva</name>
+    </author>
+    <author>
+      <name>Yongjun Xu</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">25 pages, 5 figures</arxiv:comment>
+    <link href="http://arxiv.org/abs/2501.09717v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2501.09717v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="hep-th" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.09715v1</id>
+    <updated>2025-01-16T18:04:42Z</updated>
+    <published>2025-01-16T18:04:42Z</published>
+    <title>Large moiré superstructure of stacked incommensurate charge density
+  waves</title>
+    <summary>  Recent advances in van der Waals heterostructures have opened the new
+frontier of moir\'{e} physics, whereby tuning the interlayer twist angle or
+adjusting lattice parameter mismatch have led to a plethora of exotic phenomena
+such as unconventional superconductivity and fractional quantum spin Hall
+effect. We extend the concept of moir\'{e} engineering to materials that host
+incommensurate orders, where we discovered a long-period, thermally-hysteretic
+moir\'{e} superlattice in a layered charge density wave (CDW) compound,
+EuTe$_\text{4}$. Using high-momentum-resolution X-ray diffraction performed on
+ultrathin flakes, we found two coexisting, incommensurate CDWs with slightly
+mismatched in-plane wavevectors. The interaction between these two CDWs leads
+to their joint commensuration with the high-symmetry lattice as well as a large
+moir\'{e} superstructure with an in-plane period of 13.6~nm. Due to different
+out-of-plane orders of the incommensurate CDWs, the moir\'{e} superstructure
+exhibits a clear thermal hysteresis, accounting for the large hysteresis
+observed in electrical resistivity and numerous metastable states induced by
+light or electrical pulses. Our findings pave the way for a new development in
+moir\'{e} engineering based on an incommensurate lattice. They further
+highlight the important role of interlayer ordering in determining the
+macroscopic properties of these stacked incommensurate structures.
+</summary>
+    <author>
+      <name>B. Q. Lv</name>
+    </author>
+    <author>
+      <name>Yifan Su</name>
+    </author>
+    <author>
+      <name>Alfred Zong</name>
+    </author>
+    <author>
+      <name>Qiaomei Liu</name>
+    </author>
+    <author>
+      <name>Dong Wu</name>
+    </author>
+    <author>
+      <name>Noah F. Q. Yuan</name>
+    </author>
+    <author>
+      <name>Zhengwei Nie</name>
+    </author>
+    <author>
+      <name>Jiarui Li</name>
+    </author>
+    <author>
+      <name>Suchismita Sarker</name>
+    </author>
+    <author>
+      <name>Sheng Meng</name>
+    </author>
+    <author>
+      <name>Jacob P. C. Ruff</name>
+    </author>
+    <author>
+      <name>N. L. Wang</name>
+    </author>
+    <author>
+      <name>Nuh Gedik</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">9 pages, 4 figures</arxiv:comment>
+    <link href="http://arxiv.org/abs/2501.09715v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2501.09715v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="cond-mat.str-el" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cond-mat.str-el" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.09712v1</id>
+    <updated>2025-01-16T18:01:19Z</updated>
+    <published>2025-01-16T18:01:19Z</published>
+    <title>Converse bounds for quantum hypothesis exclusion: A divergence-radius
+  approach</title>
+    <summary>  Hypothesis exclusion is an information-theoretic task in which an
+experimenter aims at ruling out a false hypothesis from a finite set of known
+candidates, and an error occurs if and only if the hypothesis being ruled out
+is the ground truth. For the tasks of quantum state exclusion and quantum
+channel exclusion -- where hypotheses are represented by quantum states and
+quantum channels, respectively -- efficiently computable upper bounds on the
+asymptotic error exponents were established in a recent work of the current
+authors [Ji et al., arXiv:2407.13728 (2024)], where the derivation was based on
+nonasymptotic analysis. In this companion paper of our previous work, we
+provide alternative proofs for the same upper bounds on the asymptotic error
+exponents of quantum state and channel exclusion, but using a conceptually
+different approach from the one adopted in the previous work. Specifically, we
+apply strong converse results for asymmetric binary hypothesis testing to
+distinguishing an arbitrary ``dummy'' hypothesis from each of the concerned
+candidates. This leads to the desired upper bounds in terms of divergence radii
+via a geometrically inspired argument.
+</summary>
+    <author>
+      <name>Kaiyuan Ji</name>
+    </author>
+    <author>
+      <name>Hemant K. Mishra</name>
+    </author>
+    <author>
+      <name>Milán Mosonyi</name>
+    </author>
+    <author>
+      <name>Mark M. Wilde</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">7 pages, 1 figure, submitted to 2025 IEEE International Symposium on
+  Information Theory (ISIT 2025)</arxiv:comment>
+    <link href="http://arxiv.org/abs/2501.09712v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2501.09712v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.IT" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.09708v1</id>
+    <updated>2025-01-16T17:59:17Z</updated>
+    <published>2025-01-16T17:59:17Z</published>
+    <title>Belavkin-Staszewski Quantum Markov Chains</title>
+    <summary>  It is well-known that the conditional mutual information of a quantum state
+is zero if, and only if, the quantum state is a quantum Markov chain. Replacing
+the Umegaki relative entropy in the definition of the conditional mutual
+information by the Belavkin-Staszewski (BS) relative entropy, we obtain the
+BS-conditional mutual information, and we call the states with zero
+BS-conditional mutual information Belavkin-Staszewski quantum Markov chains. In
+this article, we establish a correspondence which relates quantum Markov chains
+and BS-quantum Markov chains. This correspondence allows us to find a recovery
+map for the BS-relative entropy in the spirit of the Petz recovery map.
+Moreover, we prove a structural decomposition of the Belavkin-Staszewski
+quantum Markov chains and also study states for which the BS-conditional mutual
+information is only approximately zero. As an application, we show that the
+conditional mutual information of the state associated to the Gibbs state of a
+quantum spin chain with local, finite-range, translation-invariant interactions
+at any positive temperature via this new correspondence decays
+superexponentially fast with the size of the middle system.
+</summary>
+    <author>
+      <name>Andreas Bluhm</name>
+    </author>
+    <author>
+      <name>Ángela Capel</name>
+    </author>
+    <author>
+      <name>Pablo Costa Rico</name>
+    </author>
+    <author>
+      <name>Anna Jenčová</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">19 pages, 1 figure</arxiv:comment>
+    <link href="http://arxiv.org/abs/2501.09708v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2501.09708v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="math.MP" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.09702v1</id>
+    <updated>2025-01-16T17:56:19Z</updated>
+    <published>2025-01-16T17:56:19Z</published>
+    <title>Sample-based Krylov Quantum Diagonalization</title>
+    <summary>  Approximating the ground state of many-body systems is a key computational
+bottleneck underlying important applications in physics and chemistry. It has
+long been viewed as a promising application for quantum computers. The most
+widely known quantum algorithm for ground state approximation, quantum phase
+estimation, is out of reach of current quantum processors due to its high
+circuit-depths. Quantum diagonalization algorithms based on subspaces represent
+alternatives to phase estimation, which are feasible for pre-fault-tolerant and
+early-fault-tolerant quantum computers. Here, we introduce a quantum
+diagonalization algorithm which combines two key ideas on quantum subspaces: a
+classical diagonalization based on quantum samples, and subspaces constructed
+with quantum Krylov states. We prove that our algorithm converges in polynomial
+time under the working assumptions of Krylov quantum diagonalization and
+sparseness of the ground state. We then show numerical investigations of
+lattice Hamiltonians, which indicate that our method can outperform existing
+Krylov quantum diagonalization in the presence of shot noise, making our
+approach well-suited for near-term quantum devices. Finally, we carry out the
+largest ground-state quantum simulation of the single-impurity Anderson model
+on a system with $41$ bath sites, using $85$ qubits and up to $6 \cdot 10^3$
+two-qubit gates on a Heron quantum processor, showing excellent agreement with
+density matrix renormalization group calculations.
+</summary>
+    <author>
+      <name>Jeffery Yu</name>
+    </author>
+    <author>
+      <name>Javier Robledo Moreno</name>
+    </author>
+    <author>
+      <name>Joseph Iosue</name>
+    </author>
+    <author>
+      <name>Luke Bertels</name>
+    </author>
+    <author>
+      <name>Daniel Claudino</name>
+    </author>
+    <author>
+      <name>Bryce Fuller</name>
+    </author>
+    <author>
+      <name>Peter Groszkowski</name>
+    </author>
+    <author>
+      <name>Travis S. Humble</name>
+    </author>
+    <author>
+      <name>Petar Jurcevic</name>
+    </author>
+    <author>
+      <name>William Kirby</name>
+    </author>
+    <author>
+      <name>Thomas A. Maier</name>
+    </author>
+    <author>
+      <name>Mario Motta</name>
+    </author>
+    <author>
+      <name>Bibek Pokharel</name>
+    </author>
+    <author>
+      <name>Alireza Seif</name>
+    </author>
+    <author>
+      <name>Amir Shehata</name>
+    </author>
+    <author>
+      <name>Kevin J. Sung</name>
+    </author>
+    <author>
+      <name>Minh C. Tran</name>
+    </author>
+    <author>
+      <name>Vinay Tripathi</name>
+    </author>
+    <author>
+      <name>Antonio Mezzacapo</name>
+    </author>
+    <author>
+      <name>Kunal Sharma</name>
+    </author>
+    <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">22 pages, 6 figures</arxiv:comment>
+    <link href="http://arxiv.org/abs/2501.09702v1" rel="alternate" type="text/html"/>
+    <link title="pdf" href="http://arxiv.org/pdf/2501.09702v1" rel="related" type="application/pdf"/>
+    <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="quant-ph" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cond-mat.other" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="physics.comp-ph" scheme="http://arxiv.org/schemas/atom"/>
+  </entry>
+</feed>
