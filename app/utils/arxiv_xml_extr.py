@@ -7,8 +7,24 @@ from apis.arxiv_api import get_arxiv_data
 import xml.etree.ElementTree as ET
 
 
-def xml_to_dic():
-    xml = get_arxiv_data("machine learning")
+def xml_to_dic(
+    search_input,
+    search_field="all",
+    id_list="",
+    start=0,
+    max_results=50,
+    sortBy="submittedDate",
+    sortOrder="descending",
+):
+    xml = get_arxiv_data(
+        search_input,
+        search_field,
+        id_list,
+        start,
+        max_results,
+        sortBy,
+        sortOrder,
+    )
     root = ET.fromstring(xml)
     entries = root.findall("{http://www.w3.org/2005/Atom}entry")
     data = []
