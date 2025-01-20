@@ -3,12 +3,12 @@ import requests
 
 def get_arxiv_data(
     search_input,
-    search_field="all",
-    id_list="",
-    start=0,
-    max_results=50,
-    sortBy="submittedDate",
-    sortOrder="descending",
+    search_field,
+    id_list,
+    start,
+    max_results,
+    sortBy,
+    sortOrder,
 ):
     url = url_helper(
         search_input, search_field, id_list, start, max_results, sortBy, sortOrder
