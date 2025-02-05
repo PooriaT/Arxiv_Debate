@@ -1,4 +1,3 @@
-from calendar import c
 import dash
 from dash import Dash, html, dcc
 
@@ -10,10 +9,16 @@ app.layout = html.Div(
         html.Div(
             [
                 html.Nav(
-                    dcc.Link(f"{page['name']}", href=page["relative_path"]),
-                    className="nav-link",
+                    [
+                        dcc.Link(
+                            f"{page['name']}",
+                            href=page["relative_path"],
+                            className="nav-link",
+                        )
+                        for page in dash.page_registry.values()
+                    ],
+                    className="navbar-nav",
                 )
-                for page in dash.page_registry.values()
             ],
             className="navbar navbar-expand-lg bg-light",
         ),
