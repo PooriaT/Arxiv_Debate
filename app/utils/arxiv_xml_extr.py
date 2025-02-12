@@ -1,8 +1,7 @@
-import sys
-import os
+# import sys
+# import os
 
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-
+# sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 from apis.arxiv_api import get_arxiv_data
 import xml.etree.ElementTree as ET
 
@@ -12,7 +11,7 @@ def xml_to_dic(
     search_field="all",
     id_list="",
     start=0,
-    max_results=50,
+    max_results=10,
     sortBy="submittedDate",
     sortOrder="descending",
 ):
