@@ -71,6 +71,16 @@ layout = dbc.Container(
                                             size="lg",
                                             className="mb-3",
                                         ),
+                                        dbc.Input(
+                                            id="max-results",
+                                            type="number",
+                                            min=5,
+                                            max=50,
+                                            step=1,
+                                            value=10,
+                                            className="border-start-1",
+                                            style={"width": "100px"},
+                                        ),
                                         html.Small(
                                             "Enter a topic or keyword to find relevant papers",
                                             className="text-muted",
@@ -176,12 +186,12 @@ layout = dbc.Container(
     [
         dash.Output("output_summary", "children"),
         dash.Output("output-article", "children"),
-        dash.Output("loading", "active"),
+        dash.Output("loading", "children"),
     ],
     [dash.Input("submit-button", "n_clicks")],
-    [dash.State("input", "value")],
+    [dash.State("input", "value"), dash.State("max-results", "value")],
 )
-def update_output(n_clicks, input_value):
+def update_output(n_clicks, input_value, max_results):
     ctx = dash.callback_context
     if not ctx.triggered:
         raise dash.exceptions.PreventUpdate
@@ -191,7 +201,7 @@ def update_output(n_clicks, input_value):
     if not n_clicks or not input_value:
         raise dash.exceptions.PreventUpdate
 
-    arxiv_data = xml_to_dic(input_value)
+    arxiv_data = xml_to_dic(input_value, max_results=max_results)
     articles = []
 
     for data in arxiv_data:
