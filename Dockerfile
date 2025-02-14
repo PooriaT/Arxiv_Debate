@@ -1,36 +1,49 @@
 # Use the official Python image as the base image
 FROM python:3.13.1-slim
 
-# Set environment variables to prevent Python from writing .pyc files and buffering stdout
+# Set environment variables
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    POETRY_VERSION=1.8.5
+    POETRY_VERSION=1.8.5 \
+    POETRY_HOME="/opt/poetry" \
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    PYTHONPATH="/app" \ 
+    HOST="0.0.0.0" \
+    PORT="8050"
 
-# Install system dependencies required by Poetry and Streamlit
+# Install system dependencies required by Poetry
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl build-essential && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    curl \
+    build-essential \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Poetry package manager
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
 # Add Poetry to PATH
-ENV PATH="/root/.local/bin:$PATH"
+ENV PATH="${POETRY_HOME}/bin:$PATH"
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the pyproject.toml and poetry.lock files
+# Copy only dependency files first for better caching
 COPY pyproject.toml poetry.lock ./
 
-# Install dependencies using Poetry
-RUN poetry install --no-root --no-dev
+# Configure poetry to not create a virtual environment
+RUN poetry config virtualenvs.create false
 
-# Copy the entire project into the working directory
+# Install dependencies using Poetry
+RUN poetry install --no-root --no-interaction --no-ansi
+
+# Copy the entire project
 COPY . .
 
-# Expose the default Streamlit port
-EXPOSE 8501
+# Set proper permissions
+RUN chmod -R 755 /app
 
-# Set the entrypoint command to run Streamlit
-#CMD ["poetry", "run", "streamlit", "run", "app/main.py"]
+# Expose the port the app will use
+EXPOSE 8050
+
+# Run the app when the container starts
+CMD ["poetry", "run", "python", "app", "--host", "0.0.0.0"]
