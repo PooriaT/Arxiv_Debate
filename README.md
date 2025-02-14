@@ -71,7 +71,7 @@ To set up the ArxivDebate application locally, follow these steps:
 
 ## Usage
 
-Once the application is running, navigate to `http://localhost:8000` (or the specified host and port) in your web browser to access the interface.
+Once the application is running, navigate to `http://localhost:8050` (or the specified host and port) in your web browser to access the interface.
 
 From there, you can:
 

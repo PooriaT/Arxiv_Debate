@@ -71,21 +71,35 @@ layout = dbc.Container(
                                             size="lg",
                                             className="mb-3",
                                         ),
-                                        dbc.Input(
-                                            id="max-results",
-                                            type="number",
-                                            min=5,
-                                            max=50,
-                                            step=1,
-                                            value=10,
-                                            className="border-start-1",
-                                            style={"width": "100px"},
+                                        dbc.Row(
+                                            [
+                                                dbc.Col(
+                                                    [
+                                                        dbc.Label(
+                                                            "Max number of research papers (5-50):"
+                                                        ),
+                                                    ],
+                                                ),
+                                                dbc.Col(
+                                                    [
+                                                        dbc.Input(
+                                                            id="max-results",
+                                                            type="number",
+                                                            min=5,
+                                                            max=50,
+                                                            step=1,
+                                                            value=10,
+                                                            className="border-start-1",
+                                                            style={"width": "100px"},
+                                                        ),
+                                                    ],
+                                                ),
+                                            ]
                                         ),
                                         html.Small(
                                             "Enter a topic or keyword to find relevant papers",
                                             className="text-muted",
                                         ),
-                                        # Loading spinner
                                         dcc.Loading(
                                             id="loading",
                                             type="circle",
