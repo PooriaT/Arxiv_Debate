@@ -79,9 +79,29 @@ From there, you can:
 - View extracted insights and summaries.
 - Interact with the data to explore further details.
 
-## Deployment 
+## Deployment
 
 ### Docker
+
+To deploy the ArxivDebate application using Docker, follow these steps:
+
+1. **Build the Docker Image**:
+
+   Run the following command to build the Docker image:
+
+   ```bash
+   docker build -t arxivdebate .
+   ```
+
+2. **Run the Docker Container**:
+
+   Use the command below to start a container from the image:
+
+   ```bash
+   docker run -p 8050:8050 arxivdebate
+   ```
+
+This setup will allow you to deploy the ArxivDebate application using Docker, ensuring that all dependencies are managed and encapsulated within the container.
 
 ## Contributing
 
