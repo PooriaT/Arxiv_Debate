@@ -22,6 +22,8 @@ ArxivDebate is an application designed to extract insightful information from re
 
 ## Demo
 
+<img width="1317" alt="arxiv_debate_ss" src="https://github.com/user-attachments/assets/98a4ea07-4ff8-4321-9c96-613d95938a9b" />
+
 ## Installation
 
 To set up the ArxivDebate application locally, follow these steps:
