@@ -1,8 +1,8 @@
 import dash
 from dash import html, dcc
 import dash_bootstrap_components as dbc
-from utils.arxiv_xml_extr import xml_to_dic
-from apis.gemini_api import get_summarization
+from app.utils.arxiv_xml_extr import xml_to_dic
+from app.apis.gemini_api import get_summarization
 
 dash.register_page(__name__, path="/", name="Home", icon="fas fa-home")
 
