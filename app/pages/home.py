@@ -2,8 +2,8 @@ import dash
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 from app.apis.arxiv_api import get_arxiv_data
-from app.apis.gemini_api import get_summarization
 from app.services.arxiv_parser import parse_arxiv_feed
+from app.services.summarizer import SummarizationError, get_default_summarizer
 
 dash.register_page(__name__, path="/", name="Home", icon="fas fa-home")
 
@@ -269,7 +269,12 @@ def update_output(n_clicks, input_value, max_results):
             )
         )
 
-    return get_summarization(arxiv_data), article_cards, loading_state
+    try:
+        summary = get_default_summarizer().summarize(arxiv_data)
+    except SummarizationError as exc:
+        summary = str(exc)
+
+    return summary, article_cards, loading_state
 
 
 def _format_authors(authors):
