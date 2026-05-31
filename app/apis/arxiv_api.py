@@ -3,12 +3,12 @@ from app.services.arxiv_client import ArxivClient, ArxivSearchRequest
 
 def get_arxiv_data(
     search_input,
-    search_field,
-    id_list,
-    start,
-    max_results,
-    sortBy,
-    sortOrder,
+    search_field="all",
+    id_list="",
+    start=0,
+    max_results=10,
+    sortBy="submittedDate",
+    sortOrder="descending",
 ):
     request_params = {
         "query": search_input,
