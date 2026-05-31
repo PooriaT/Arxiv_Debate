@@ -1,0 +1,26 @@
+.nav-link-custom {
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.nav-link-custom:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-link-custom.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+}
+
+.page-content {
+    min-height: calc(100vh - 200px);
+    padding: 20px;
+}
+
+.footer {
+    margin-top: auto;
+    padding: 20px 0;
+    background-color: #f8f9fa;
+}

@@ -2,7 +2,7 @@
 # import os
 
 # sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from apis.arxiv_api import get_arxiv_data
+from app.apis.arxiv_api import get_arxiv_data
 import xml.etree.ElementTree as ET
 
 
