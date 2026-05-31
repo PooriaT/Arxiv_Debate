@@ -1,8 +1,9 @@
 import dash
 from dash import html, dcc
 import dash_bootstrap_components as dbc
-from app.utils.arxiv_xml_extr import xml_to_dic
+from app.apis.arxiv_api import get_arxiv_data
 from app.apis.gemini_api import get_summarization
+from app.services.arxiv_parser import parse_arxiv_feed
 
 dash.register_page(__name__, path="/", name="Home", icon="fas fa-home")
 
@@ -215,11 +216,12 @@ def update_output(n_clicks, input_value, max_results):
     if not n_clicks or not input_value:
         raise dash.exceptions.PreventUpdate
 
-    arxiv_data = xml_to_dic(input_value, max_results=max_results)
-    articles = []
+    arxiv_xml = get_arxiv_data(input_value, max_results=max_results)
+    arxiv_data = parse_arxiv_feed(arxiv_xml)
+    article_cards = []
 
-    for data in arxiv_data:
-        articles.append(
+    for article in arxiv_data:
+        article_cards.append(
             dbc.Card(
                 [
                     dbc.CardBody(
@@ -227,8 +229,8 @@ def update_output(n_clicks, input_value, max_results):
                             html.H5(
                                 [
                                     html.A(
-                                        data["title"],
-                                        href=data["link"],
+                                        article.title,
+                                        href=article.pdf_url or article.id or None,
                                         target="_blank",
                                         className="text-decoration-none",
                                     )
@@ -240,14 +242,14 @@ def update_output(n_clicks, input_value, max_results):
                                     html.Span(
                                         [
                                             html.I(className="fas fa-users me-2"),
-                                            f"Authors: {', '.join(data['authors'])}",
+                                            f"Authors: {_format_authors(article.authors)}",
                                         ],
                                         className="me-3",
                                     ),
                                     html.Span(
                                         [
                                             html.I(className="fas fa-calendar me-2"),
-                                            f"Published: {data['published'][:10]}",
+                                            f"Published: {_format_published(article.published)}",
                                         ]
                                     ),
                                 ],
@@ -256,7 +258,7 @@ def update_output(n_clicks, input_value, max_results):
                             html.P(
                                 [
                                     html.I(className="fas fa-info-circle me-2"),
-                                    f"Summary: {data['summary']}",
+                                    f"Summary: {article.summary or 'No summary available'}",
                                 ],
                                 className="mb-0",
                             ),
@@ -267,7 +269,15 @@ def update_output(n_clicks, input_value, max_results):
             )
         )
 
-    return get_summarization(arxiv_data), articles, loading_state
+    return get_summarization(arxiv_data), article_cards, loading_state
+
+
+def _format_authors(authors):
+    return ", ".join(authors) if authors else "Unknown"
+
+
+def _format_published(published):
+    return published[:10] if published else "Unknown"
 
 
 # Add custom CSS
