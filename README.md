@@ -10,6 +10,7 @@ ArxivDebate is an application designed to extract insightful information from re
   - [Demo](#demo)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Testing](#testing)
   - [Deployment](#deployment)
     - [Docker](#docker)
   - [Contributing](#contributing)
@@ -80,6 +81,16 @@ From there, you can:
 - Specify search criteria to retrieve recent arXiv articles.
 - View extracted insights and summaries.
 - Interact with the data to explore further details.
+
+## Testing
+
+Run the test suite with:
+
+```bash
+poetry run pytest
+```
+
+The tests mock arXiv and Gemini calls, so they do not require `GEMINI_API_KEY` or live network access.
 
 ## Deployment
 
