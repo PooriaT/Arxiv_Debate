@@ -1,8 +1,10 @@
 import sys
 import unittest
+import importlib
 from unittest.mock import Mock, patch
 
 from app.core.config import AppConfig, DEFAULT_GEMINI_MODEL_NAME, get_config
+import app.services.gemini_summarizer as gemini_summarizer
 from app.services.gemini_summarizer import GeminiSummarizer, build_summary_prompt
 from app.services.summarizer import SummarizationError
 
@@ -27,6 +29,19 @@ class ConfigTest(unittest.TestCase):
 
 
 class GeminiSummarizerTest(unittest.TestCase):
+    def test_gemini_is_not_initialized_at_import_time(self):
+        def guarded_import(name, *args, **kwargs):
+            if name == "google.generativeai":
+                raise AssertionError(
+                    "Gemini should not be imported at module import time"
+                )
+            return original_import(name, *args, **kwargs)
+
+        original_import = __import__
+
+        with patch("builtins.__import__", guarded_import):
+            importlib.reload(gemini_summarizer)
+
     def test_missing_api_key_raises_clear_error(self):
         summarizer = GeminiSummarizer(AppConfig(None, "test-model"))
 
