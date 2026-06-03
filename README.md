@@ -49,7 +49,7 @@ To set up the ArxivDebate application locally, follow these steps:
    Once Poetry is installed, run:
 
    ```bash
-   poetry install
+   poetry install --with dev
    ```
 
 3. **Set Up Pre-Commit Hooks** (Optional but recommended):
@@ -62,15 +62,33 @@ To set up the ArxivDebate application locally, follow these steps:
    poetry run pre-commit install
    ```
 
-4. **Run the Application**:
+4. **Run Developer Checks**:
+
+   Check formatting with Black:
+
+   ```bash
+   poetry run black --check app/
+   ```
+
+   Run all configured pre-commit hooks:
+
+   ```bash
+   poetry run pre-commit run --all-files
+   ```
+
+   Run the test suite:
+
+   ```bash
+   poetry run pytest
+   ```
+
+5. **Run the Application**:
 
    To start the application, use:
 
    ```bash
-   poetry run python app/main.py
+   poetry run python -m app
    ```
-
-   Replace `app/main.py` with the actual entry point of your application if it differs.
 
 ## Usage
 
