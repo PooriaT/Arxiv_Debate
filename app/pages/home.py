@@ -27,7 +27,8 @@ layout = dbc.Container(
                                 html.P(
                                     [
                                         html.I(
-                                            className="fas fa-magnifying-glass me-2"
+                                            className="fas fa-magnifying-glass me-2",
+                                            **{"aria-hidden": "true"},
                                         ),
                                         "arXiv search with AI-assisted synthesis",
                                     ],
@@ -65,7 +66,8 @@ layout = dbc.Container(
                                                 html.H2(
                                                     [
                                                         html.I(
-                                                            className="fas fa-search me-2"
+                                                            className="fas fa-search me-2",
+                                                            **{"aria-hidden": "true"},
                                                         ),
                                                         "Search arXiv",
                                                     ],
@@ -86,28 +88,35 @@ layout = dbc.Container(
                                                             html_for="input",
                                                             className="fw-semibold",
                                                         ),
-                                                        dbc.InputGroup(
+                                                        html.Div(
                                                             [
                                                                 dbc.Input(
                                                                     id="input",
                                                                     type="text",
                                                                     placeholder="e.g., large language models",
-                                                                    className="border-end-0",
+                                                                    size="lg",
+                                                                    className="search-topic-input",
+                                                                    **{
+                                                                        "aria-describedby": "search-help-text"
+                                                                    },
                                                                 ),
                                                                 dbc.Button(
                                                                     [
                                                                         html.I(
-                                                                            className="fas fa-paper-plane me-2"
+                                                                            className="fas fa-paper-plane me-2",
+                                                                            **{
+                                                                                "aria-hidden": "true"
+                                                                            },
                                                                         ),
-                                                                        "Search",
+                                                                        "Search arXiv papers",
                                                                     ],
                                                                     id="submit-button",
                                                                     color="primary",
-                                                                    className="ms-0",
+                                                                    size="lg",
+                                                                    className="search-submit-button",
                                                                 ),
                                                             ],
-                                                            size="lg",
-                                                            className="mb-2",
+                                                            className="search-form-controls mb-2",
                                                         ),
                                                         dbc.FormText(
                                                             [
@@ -125,10 +134,11 @@ layout = dbc.Container(
                                                                 ),
                                                                 ".",
                                                             ],
+                                                            id="search-help-text",
                                                             className="d-block",
                                                         ),
                                                     ],
-                                                    lg=9,
+                                                    lg=8,
                                                 ),
                                                 dbc.Col(
                                                     [
@@ -146,14 +156,18 @@ layout = dbc.Container(
                                                             value=10,
                                                             size="sm",
                                                             className="max-results-input mb-2",
+                                                            **{
+                                                                "aria-describedby": "max-results-help-text"
+                                                            },
                                                         ),
                                                         dbc.FormText(
                                                             "Fetch 5 to 50 papers. Larger result sets may take longer.",
+                                                            id="max-results-help-text",
                                                             className="d-block",
                                                         ),
                                                     ],
-                                                    lg=3,
-                                                    className="mt-4 mt-lg-0",
+                                                    lg=4,
+                                                    className="mt-2 mt-lg-0",
                                                 ),
                                             ],
                                             className="g-4 align-items-start",
@@ -189,7 +203,8 @@ layout = dbc.Container(
                                                 html.H2(
                                                     [
                                                         html.I(
-                                                            className="fas fa-robot me-2"
+                                                            className="fas fa-robot me-2",
+                                                            **{"aria-hidden": "true"},
                                                         ),
                                                         "AI-assisted summary",
                                                     ],
@@ -231,7 +246,8 @@ layout = dbc.Container(
                                                 html.H2(
                                                     [
                                                         html.I(
-                                                            className="fas fa-newspaper me-2"
+                                                            className="fas fa-newspaper me-2",
+                                                            **{"aria-hidden": "true"},
                                                         ),
                                                         "Related articles",
                                                     ],
