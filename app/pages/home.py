@@ -2,6 +2,16 @@ import dash
 from dash import html, dcc
 import dash_bootstrap_components as dbc
 from app.components.article_card import render_article_cards
+from app.components.status import (
+    render_arxiv_error,
+    render_initial_state,
+    render_invalid_max_results,
+    render_loading_state,
+    render_no_results_state,
+    render_parser_error,
+    render_summary_error,
+    render_unexpected_error,
+)
 from app.services.search_workflow import get_default_search_workflow
 
 dash.register_page(__name__, path="/", name="Home", icon="fas fa-home")
@@ -153,6 +163,7 @@ layout = dbc.Container(
                                             type="circle",
                                             color="#119DFF",
                                             fullscreen=True,
+                                            custom_spinner=render_loading_state(),
                                         ),
                                     ]
                                 )
@@ -195,10 +206,10 @@ layout = dbc.Container(
                                 ),
                                 dbc.CardBody(
                                     [
-                                        dcc.Markdown(
+                                        html.Div(
+                                            render_initial_state(),
                                             id="output_summary",
-                                            children="Enter a research topic above to generate an AI-assisted summary of matching arXiv papers.",
-                                            className="prose summary-output result-placeholder mb-0",
+                                            className="summary-output",
                                         )
                                     ]
                                 ),
@@ -238,12 +249,7 @@ layout = dbc.Container(
                                 dbc.CardBody(
                                     [
                                         html.Div(
-                                            [
-                                                html.P(
-                                                    "Search results will list the related arXiv papers here.",
-                                                    className="result-placeholder mb-0",
-                                                )
-                                            ],
+                                            render_initial_state(),
                                             id="output-article",
                                             className="article-list",
                                         )
@@ -278,24 +284,34 @@ def update_output(n_clicks, input_value, max_results):
     if not ctx.triggered:
         raise dash.exceptions.PreventUpdate
 
-    loading_state = ctx.triggered[0]["prop_id"].split(".")[0] == "submit-button"
-
     query = (input_value or "").strip()
     if not n_clicks or not query:
         raise dash.exceptions.PreventUpdate
 
     normalized_max_results = _normalize_max_results(max_results)
     if normalized_max_results is None:
-        return (
-            "Max number of research papers must be between 5 and 50.",
-            [],
-            loading_state,
-        )
+        status = render_invalid_max_results()
+        return status, status, None
 
-    result = get_default_search_workflow().search(query, normalized_max_results)
-    summary = result.error or result.summary_error or result.summary or ""
+    try:
+        result = get_default_search_workflow().search(query, normalized_max_results)
+    except Exception:
+        status = render_unexpected_error()
+        return status, status, None
 
-    return summary, render_article_cards(result.articles), loading_state
+    if result.error:
+        status = _render_workflow_error(result.error)
+        return status, status, None
+
+    if not result.articles:
+        status = render_no_results_state(query)
+        return status, status, None
+
+    article_cards = render_article_cards(result.articles)
+    if result.summary_error:
+        return render_summary_error(result.summary_error), article_cards, None
+
+    return _render_summary(result.summary), article_cards, None
 
 
 def _normalize_max_results(max_results):
@@ -308,3 +324,20 @@ def _normalize_max_results(max_results):
         return None
 
     return normalized
+
+
+def _render_workflow_error(message: str):
+    if message.startswith("Could not parse arXiv articles"):
+        return render_parser_error(message)
+
+    return render_arxiv_error(message)
+
+
+def _render_summary(summary: str | None):
+    if not summary:
+        return render_summary_error("The AI summary was not generated for this search.")
+
+    return dcc.Markdown(
+        summary,
+        className="prose summary-output mb-0",
+    )
