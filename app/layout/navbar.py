@@ -12,8 +12,7 @@ def create_navbar():
                         html.I(className="fas fa-book-reader me-2"),
                         "ARXIV DEBATE DASHBOARD",
                     ],
-                    className="ms-2",
-                    style={"fontSize": "1.5rem", "fontWeight": "bold"},
+                    className="ms-2 app-navbar-brand",
                 ),
                 dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
                 dbc.Collapse(
