@@ -55,6 +55,9 @@ class SearchWorkflow:
                 error=f"Could not parse arXiv articles: {exc}",
             )
 
+        if not articles:
+            return SearchWorkflowResult(articles=[])
+
         try:
             summary = self.summarizer.summarize(articles)
         except SummarizationError as exc:

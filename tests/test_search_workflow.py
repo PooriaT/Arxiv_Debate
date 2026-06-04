@@ -7,7 +7,6 @@ from app.services.arxiv_parser import ArxivParseError
 from app.services.search_workflow import SearchWorkflow
 from app.services.summarizer import SummarizationError
 
-
 ARTICLE = Article(
     id="http://arxiv.org/abs/2501.00001v1",
     title="Service-layer search",
@@ -76,6 +75,23 @@ class SearchWorkflowTest(unittest.TestCase):
         self.assertIn("Could not parse arXiv articles", result.error)
         self.assertIn("malformed", result.error)
         self.assertIsNone(result.summary)
+        self.assertIsNone(result.summary_error)
+        summarizer.summarize.assert_not_called()
+
+    def test_search_treats_empty_arxiv_results_as_no_results(self):
+        arxiv_client = Mock()
+        arxiv_client.fetch_articles_xml.return_value = "<feed />"
+        parser = Mock(return_value=[])
+        summarizer = Mock()
+
+        result = SearchWorkflow(arxiv_client, parser, summarizer).search(
+            "very specific missing topic",
+            5,
+        )
+
+        self.assertEqual(result.articles, [])
+        self.assertIsNone(result.summary)
+        self.assertIsNone(result.error)
         self.assertIsNone(result.summary_error)
         summarizer.summarize.assert_not_called()
 
