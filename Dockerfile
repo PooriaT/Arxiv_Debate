@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED=1 \
     POETRY_VERSION=1.8.5 \
     POETRY_HOME="/opt/poetry" \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
-    PYTHONPATH="/app" \ 
+    PYTHONPATH="/app" \
     HOST="0.0.0.0" \
     PORT="8050"
 
@@ -46,4 +46,4 @@ RUN chmod -R 755 /app
 EXPOSE 8050
 
 # Run the app when the container starts
-CMD ["poetry", "run", "python", "app", "--host", "0.0.0.0"]
+CMD ["poetry", "run", "python", "-m", "app"]

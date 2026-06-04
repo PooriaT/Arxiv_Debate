@@ -90,6 +90,14 @@ To set up the ArxivDebate application locally, follow these steps:
    poetry run python -m app
    ```
 
+   Runtime settings can be provided with environment variables:
+
+   ```bash
+   HOST=0.0.0.0 PORT=8050 DEBUG=false poetry run python -m app
+   ```
+
+   By default, the app runs on `127.0.0.1:8050` with debug mode disabled.
+
 ## Usage
 
 Once the application is running, navigate to `http://localhost:8050` (or the specified host and port) in your web browser to access the interface.
@@ -132,7 +140,9 @@ To deploy the ArxivDebate application using Docker, follow these steps:
    docker run -p 8050:8050 arxivdebate
    ```
 
-This setup will allow you to deploy the ArxivDebate application using Docker, ensuring that all dependencies are managed and encapsulated within the container.
+The Docker image starts the app with `poetry run python -m app` and sets
+`HOST=0.0.0.0` and `PORT=8050` so the Dash server is reachable through the
+published port.
 
 ## Contributing
 

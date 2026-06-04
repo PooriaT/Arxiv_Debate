@@ -2,6 +2,7 @@ import dash
 from dash import Dash
 import dash_bootstrap_components as dbc
 
+from .core.config import get_config
 from .layout import create_app_shell
 
 app = Dash(
@@ -28,4 +29,5 @@ def toggle_navbar_collapse(n, is_open):
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    config = get_config()
+    app.run(host=config.host, port=config.port, debug=config.debug)
