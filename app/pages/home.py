@@ -1,8 +1,8 @@
 import dash
 from dash import html, dcc
 import dash_bootstrap_components as dbc
-from utils.arxiv_xml_extr import xml_to_dic
-from apis.gemini_api import get_summarization
+from app.components.article_card import render_article_cards
+from app.services.search_workflow import get_default_search_workflow
 
 dash.register_page(__name__, path="/", name="Home", icon="fas fa-home")
 
@@ -212,62 +212,34 @@ def update_output(n_clicks, input_value, max_results):
 
     loading_state = ctx.triggered[0]["prop_id"].split(".")[0] == "submit-button"
 
-    if not n_clicks or not input_value:
+    query = (input_value or "").strip()
+    if not n_clicks or not query:
         raise dash.exceptions.PreventUpdate
 
-    arxiv_data = xml_to_dic(input_value, max_results=max_results)
-    articles = []
-
-    for data in arxiv_data:
-        articles.append(
-            dbc.Card(
-                [
-                    dbc.CardBody(
-                        [
-                            html.H5(
-                                [
-                                    html.A(
-                                        data["title"],
-                                        href=data["link"],
-                                        target="_blank",
-                                        className="text-decoration-none",
-                                    )
-                                ],
-                                className="card-title",
-                            ),
-                            html.Div(
-                                [
-                                    html.Span(
-                                        [
-                                            html.I(className="fas fa-users me-2"),
-                                            f"Authors: {', '.join(data['authors'])}",
-                                        ],
-                                        className="me-3",
-                                    ),
-                                    html.Span(
-                                        [
-                                            html.I(className="fas fa-calendar me-2"),
-                                            f"Published: {data['published'][:10]}",
-                                        ]
-                                    ),
-                                ],
-                                className="text-muted mb-3",
-                            ),
-                            html.P(
-                                [
-                                    html.I(className="fas fa-info-circle me-2"),
-                                    f"Summary: {data['summary']}",
-                                ],
-                                className="mb-0",
-                            ),
-                        ]
-                    )
-                ],
-                className="mb-3 shadow-sm",
-            )
+    normalized_max_results = _normalize_max_results(max_results)
+    if normalized_max_results is None:
+        return (
+            "Max number of research papers must be between 5 and 50.",
+            [],
+            loading_state,
         )
 
-    return get_summarization(arxiv_data), articles, loading_state
+    result = get_default_search_workflow().search(query, normalized_max_results)
+    summary = result.error or result.summary_error or result.summary or ""
+
+    return summary, render_article_cards(result.articles), loading_state
+
+
+def _normalize_max_results(max_results):
+    try:
+        normalized = int(max_results)
+    except (TypeError, ValueError):
+        return None
+
+    if not 5 <= normalized <= 50:
+        return None
+
+    return normalized
 
 
 # Add custom CSS

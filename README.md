@@ -10,6 +10,7 @@ ArxivDebate is an application designed to extract insightful information from re
   - [Demo](#demo)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Testing](#testing)
   - [Deployment](#deployment)
     - [Docker](#docker)
   - [Contributing](#contributing)
@@ -48,7 +49,7 @@ To set up the ArxivDebate application locally, follow these steps:
    Once Poetry is installed, run:
 
    ```bash
-   poetry install
+   poetry install --with dev
    ```
 
 3. **Set Up Pre-Commit Hooks** (Optional but recommended):
@@ -61,15 +62,41 @@ To set up the ArxivDebate application locally, follow these steps:
    poetry run pre-commit install
    ```
 
-4. **Run the Application**:
+4. **Run Developer Checks**:
+
+   Check formatting with Black:
+
+   ```bash
+   poetry run black --check app/
+   ```
+
+   Run all configured pre-commit hooks:
+
+   ```bash
+   poetry run pre-commit run --all-files
+   ```
+
+   Run the test suite:
+
+   ```bash
+   poetry run pytest
+   ```
+
+5. **Run the Application**:
 
    To start the application, use:
 
    ```bash
-   poetry run python app/main.py
+   poetry run python -m app
    ```
 
-   Replace `app/main.py` with the actual entry point of your application if it differs.
+   Runtime settings can be provided with environment variables:
+
+   ```bash
+   HOST=0.0.0.0 PORT=8050 DEBUG=false poetry run python -m app
+   ```
+
+   By default, the app runs on `127.0.0.1:8050` with debug mode disabled.
 
 ## Usage
 
@@ -80,6 +107,16 @@ From there, you can:
 - Specify search criteria to retrieve recent arXiv articles.
 - View extracted insights and summaries.
 - Interact with the data to explore further details.
+
+## Testing
+
+Run the test suite with:
+
+```bash
+poetry run pytest
+```
+
+The tests mock arXiv and Gemini calls, so they do not require `GEMINI_API_KEY` or live network access.
 
 ## Deployment
 
@@ -103,7 +140,9 @@ To deploy the ArxivDebate application using Docker, follow these steps:
    docker run -p 8050:8050 arxivdebate
    ```
 
-This setup will allow you to deploy the ArxivDebate application using Docker, ensuring that all dependencies are managed and encapsulated within the container.
+The Docker image starts the app with `poetry run python -m app` and sets
+`HOST=0.0.0.0` and `PORT=8050` so the Dash server is reachable through the
+published port.
 
 ## Contributing
 
