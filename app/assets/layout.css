@@ -53,3 +53,28 @@
 .result-placeholder {
     color: #6c757d;
 }
+
+.article-card-title {
+    line-height: 1.35;
+}
+
+.article-card-meta {
+    font-size: 0.875rem;
+}
+
+.article-card-meta-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+.article-card-category {
+    letter-spacing: 0.03em;
+}
+
+.article-card-id {
+    font-family: var(--bs-font-monospace);
+}
+
+.article-abstract-preview {
+    line-height: 1.55;
+}
