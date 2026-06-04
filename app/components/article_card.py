@@ -182,7 +182,12 @@ def _format_paper_identifier(article_id: str | None) -> str | None:
     if not normalized:
         return None
 
-    identifier = normalized.rsplit("/", 1)[-1]
+    identifier = normalized
+    for path_prefix in ("/abs/", "/pdf/"):
+        if path_prefix in identifier:
+            identifier = identifier.split(path_prefix, 1)[1]
+            break
+
     if identifier.endswith(".pdf"):
         identifier = identifier[:-4]
 

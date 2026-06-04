@@ -4,6 +4,7 @@ from app.components.article_card import (
     ABSTRACT_PREVIEW_LENGTH,
     _format_authors,
     _format_category,
+    _format_paper_identifier,
     _format_published,
     _truncate_text,
     render_article_card,
@@ -109,6 +110,10 @@ class ArticleCardTest(unittest.TestCase):
         )
         self.assertEqual(_format_published(None), "Unknown date")
         self.assertEqual(_format_published("2025-01-01T12:00:00Z"), "2025-01-01")
+        self.assertEqual(
+            _format_paper_identifier("http://arxiv.org/abs/hep-th/9901001v1"),
+            "hep-th/9901001v1",
+        )
         self.assertEqual(_format_category(" cs.SE "), "cs.SE")
         self.assertIsNone(_format_category(""))
         self.assertEqual(
