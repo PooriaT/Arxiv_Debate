@@ -5,6 +5,7 @@ import requests
 
 from app.services.arxiv_client import (
     ARXIV_API_BASE_URL,
+    DEFAULT_USER_AGENT,
     ArxivClient,
     ArxivClientError,
     ArxivSearchRequest,
@@ -12,6 +13,9 @@ from app.services.arxiv_client import (
 
 
 class ArxivClientTest(unittest.TestCase):
+    def setUp(self):
+        ArxivClient._last_request_started_at = 0.0
+
     @patch("app.services.arxiv_client.requests.get")
     def test_fetch_articles_xml_builds_query_params(self, mock_get):
         mock_get.return_value = Mock(status_code=200, text="<feed />")
@@ -41,6 +45,7 @@ class ArxivClientTest(unittest.TestCase):
                 "sortOrder": "ascending",
             },
             timeout=5,
+            headers={"User-Agent": DEFAULT_USER_AGENT},
         )
 
     @patch("app.services.arxiv_client.requests.get")
@@ -112,13 +117,87 @@ class ArxivClientTest(unittest.TestCase):
             )
 
     @patch("app.services.arxiv_client.requests.get")
+    def test_fetch_articles_xml_retries_rate_limited_response(self, mock_get):
+        sleep = Mock()
+        mock_get.side_effect = [
+            Mock(status_code=429, text="too many", headers={}),
+            Mock(status_code=200, text="<feed />", headers={}),
+        ]
+
+        xml = ArxivClient(
+            max_retries=1,
+            retry_delay_seconds=3,
+            min_request_interval_seconds=0,
+            sleep=sleep,
+        ).fetch_articles_xml(ArxivSearchRequest(query="machine learning"))
+
+        self.assertEqual(xml, "<feed />")
+        self.assertEqual(mock_get.call_count, 2)
+        sleep.assert_called_once_with(3)
+
+    @patch("app.services.arxiv_client.requests.get")
+    def test_fetch_articles_xml_uses_retry_after_header(self, mock_get):
+        sleep = Mock()
+        mock_get.side_effect = [
+            Mock(status_code=429, text="too many", headers={"Retry-After": "7"}),
+            Mock(status_code=200, text="<feed />", headers={}),
+        ]
+
+        ArxivClient(
+            max_retries=1,
+            min_request_interval_seconds=0,
+            sleep=sleep,
+        ).fetch_articles_xml(ArxivSearchRequest(query="machine learning"))
+
+        sleep.assert_called_once_with(7.0)
+
+    @patch("app.services.arxiv_client.requests.get")
+    def test_fetch_articles_xml_raises_friendly_rate_limit_error_after_retries(
+        self,
+        mock_get,
+    ):
+        mock_get.return_value = Mock(status_code=429, text="too many", headers={})
+
+        with self.assertRaisesRegex(ArxivClientError, "rate limiting"):
+            ArxivClient(
+                max_retries=1,
+                min_request_interval_seconds=0,
+                sleep=Mock(),
+            ).fetch_articles_xml(ArxivSearchRequest(query="machine learning"))
+
+        self.assertEqual(mock_get.call_count, 2)
+
+    @patch("app.services.arxiv_client.requests.get")
     def test_fetch_articles_xml_raises_on_request_exception(self, mock_get):
         mock_get.side_effect = requests.Timeout("timed out")
 
-        with self.assertRaisesRegex(ArxivClientError, "Failed to fetch"):
+        with self.assertRaisesRegex(ArxivClientError, "Timed out"):
+            ArxivClient(max_retries=0).fetch_articles_xml(
+                ArxivSearchRequest(query="machine learning")
+            )
+
+    @patch("app.services.arxiv_client.requests.get")
+    def test_fetch_articles_xml_raises_clear_connection_error(self, mock_get):
+        mock_get.side_effect = requests.ConnectionError("dns failed")
+
+        with self.assertRaisesRegex(ArxivClientError, "Could not connect to arXiv"):
             ArxivClient().fetch_articles_xml(
                 ArxivSearchRequest(query="machine learning")
             )
+
+    @patch("app.services.arxiv_client.requests.get")
+    def test_fetch_articles_xml_throttles_successive_clients(self, mock_get):
+        sleep = Mock()
+        mock_get.return_value = Mock(status_code=200, text="<feed />")
+        ArxivClient._last_request_started_at = 10.0
+
+        ArxivClient(
+            min_request_interval_seconds=3,
+            sleep=sleep,
+            monotonic=Mock(return_value=11.0),
+        ).fetch_articles_xml(ArxivSearchRequest(query="machine learning"))
+
+        sleep.assert_called_once_with(2.0)
 
 
 if __name__ == "__main__":
