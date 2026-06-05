@@ -84,9 +84,33 @@ layout = dbc.Container(
                                                 dbc.Col(
                                                     [
                                                         dbc.Label(
-                                                            "Research topic",
+                                                            [
+                                                                html.Span(
+                                                                    "Research topic",
+                                                                    className="fw-semibold d-block",
+                                                                ),
+                                                                html.Span(
+                                                                    [
+                                                                        "Good searches are specific research areas, such as ",
+                                                                        html.Strong(
+                                                                            "large language models"
+                                                                        ),
+                                                                        ", ",
+                                                                        html.Strong(
+                                                                            "graph neural networks"
+                                                                        ),
+                                                                        ", or ",
+                                                                        html.Strong(
+                                                                            "protein folding"
+                                                                        ),
+                                                                        ".",
+                                                                    ],
+                                                                    id="search-help-text",
+                                                                    className="form-text fw-normal d-block",
+                                                                ),
+                                                            ],
                                                             html_for="input",
-                                                            className="fw-semibold",
+                                                            className="mb-2",
                                                         ),
                                                         html.Div(
                                                             [
@@ -96,9 +120,6 @@ layout = dbc.Container(
                                                                     placeholder="e.g., large language models",
                                                                     size="lg",
                                                                     className="search-topic-input",
-                                                                    **{
-                                                                        "aria-describedby": "search-help-text"
-                                                                    },
                                                                 ),
                                                                 dbc.Button(
                                                                     [
@@ -118,34 +139,25 @@ layout = dbc.Container(
                                                             ],
                                                             className="search-form-controls mb-2",
                                                         ),
-                                                        dbc.FormText(
-                                                            [
-                                                                "Good searches are specific research areas, such as ",
-                                                                html.Strong(
-                                                                    "large language models"
-                                                                ),
-                                                                ", ",
-                                                                html.Strong(
-                                                                    "graph neural networks"
-                                                                ),
-                                                                ", or ",
-                                                                html.Strong(
-                                                                    "protein folding"
-                                                                ),
-                                                                ".",
-                                                            ],
-                                                            id="search-help-text",
-                                                            className="d-block",
-                                                        ),
                                                     ],
                                                     lg=8,
                                                 ),
                                                 dbc.Col(
                                                     [
                                                         dbc.Label(
-                                                            "Max results",
+                                                            [
+                                                                html.Span(
+                                                                    "Max results",
+                                                                    className="fw-semibold d-block",
+                                                                ),
+                                                                html.Span(
+                                                                    "Fetch 5 to 50 papers. Larger result sets may take longer.",
+                                                                    id="max-results-help-text",
+                                                                    className="form-text fw-normal d-block",
+                                                                ),
+                                                            ],
                                                             html_for="max-results",
-                                                            className="fw-semibold",
+                                                            className="mb-2",
                                                         ),
                                                         dbc.Input(
                                                             id="max-results",
@@ -156,14 +168,6 @@ layout = dbc.Container(
                                                             value=10,
                                                             size="sm",
                                                             className="max-results-input mb-2",
-                                                            **{
-                                                                "aria-describedby": "max-results-help-text"
-                                                            },
-                                                        ),
-                                                        dbc.FormText(
-                                                            "Fetch 5 to 50 papers. Larger result sets may take longer.",
-                                                            id="max-results-help-text",
-                                                            className="d-block",
                                                         ),
                                                     ],
                                                     lg=4,
