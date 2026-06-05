@@ -99,23 +99,21 @@ def _render_metadata(article: Article, paper_identifier: str | None):
 def _render_action(pdf_url: str | None, arxiv_url: str | None, article_title: str):
     if pdf_url:
         return [
-            dbc.Button(
+            html.A(
                 [
                     html.I(className="fas fa-file-pdf me-2", **{"aria-hidden": "true"}),
                     "Read paper PDF",
                 ],
                 href=pdf_url,
                 target="_blank",
-                color="primary",
-                size="sm",
-                className="article-card-action",
+                className="btn btn-primary btn-sm article-card-action",
                 **{"aria-label": _format_action_label("Read PDF for", article_title)},
             )
         ]
 
     if arxiv_url:
         return [
-            dbc.Button(
+            html.A(
                 [
                     html.I(
                         className="fas fa-external-link-alt me-2",
@@ -125,10 +123,7 @@ def _render_action(pdf_url: str | None, arxiv_url: str | None, article_title: st
                 ],
                 href=arxiv_url,
                 target="_blank",
-                color="secondary",
-                outline=True,
-                size="sm",
-                className="article-card-action",
+                className="btn btn-outline-secondary btn-sm article-card-action",
                 **{
                     "aria-label": _format_action_label(
                         "View article on arXiv for", article_title
