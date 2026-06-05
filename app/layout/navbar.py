@@ -9,13 +9,19 @@ def create_navbar():
             [
                 dbc.NavbarBrand(
                     [
-                        html.I(className="fas fa-book-reader me-2"),
+                        html.I(
+                            className="fas fa-book-reader me-2",
+                            **{"aria-hidden": "true"},
+                        ),
                         "ARXIV DEBATE DASHBOARD",
                     ],
-                    className="ms-2",
-                    style={"fontSize": "1.5rem", "fontWeight": "bold"},
+                    className="ms-2 app-navbar-brand",
                 ),
-                dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
+                dbc.NavbarToggler(
+                    id="navbar-toggler",
+                    n_clicks=0,
+                    **{"aria-label": "Toggle navigation menu"},
+                ),
                 dbc.Collapse(
                     dbc.Nav(
                         [
@@ -23,20 +29,19 @@ def create_navbar():
                                 dbc.NavLink(
                                     [
                                         html.I(
-                                            className=(
-                                                f"fas {page.get('icon', 'fa-circle')} me-2"
-                                            )
+                                            className=f"{_normalize_icon_class(page.get('icon'))} me-2",
+                                            **{"aria-hidden": "true"},
                                         ),
                                         f"{page['name']}",
                                     ],
                                     href=page["relative_path"],
                                     active="exact",
-                                    className="nav-link-custom",
+                                    className="nav-link-custom d-flex align-items-center",
                                 )
                             )
                             for page in dash.page_registry.values()
                         ],
-                        className="ms-auto",
+                        className="ms-auto navbar-links",
                         navbar=True,
                     ),
                     id="navbar-collapse",
@@ -49,3 +54,11 @@ def create_navbar():
         dark=True,
         className="mb-4",
     )
+
+
+def _normalize_icon_class(icon: str | None) -> str:
+    normalized_icon = (icon or "fa-circle").strip()
+    if normalized_icon.startswith(("fa ", "fas ", "far ", "fab ")):
+        return normalized_icon
+
+    return f"fas {normalized_icon}"

@@ -1,6 +1,15 @@
 import unittest
 
-from app.components.article_card import render_article_card, render_article_cards
+from app.components.article_card import (
+    ABSTRACT_PREVIEW_LENGTH,
+    _format_authors,
+    _format_category,
+    _format_paper_identifier,
+    _format_published,
+    _truncate_text,
+    render_article_card,
+    render_article_cards,
+)
 from app.models.article import Article
 
 
@@ -18,18 +27,26 @@ class ArticleCardTest(unittest.TestCase):
 
         card = render_article_card(article)
         body = card.children[0]
-        link = body.children[0].children[0]
-        authors = body.children[1].children[0]
-        published = body.children[1].children[1]
-        summary = body.children[2]
+        title = body.children[0]
+        metadata = body.children[1]
+        abstract = body.children[2]
+        action_area = body.children[3]
+        read_pdf_button = action_area.children[0]
 
-        self.assertEqual(card.className, "mb-3 shadow-sm")
-        self.assertEqual(link.children, "Typed callback orchestration")
-        self.assertEqual(link.href, "http://arxiv.org/pdf/2501.00001v1")
-        self.assertEqual(link.target, "_blank")
-        self.assertEqual(authors.children[1], "Authors: Ada Lovelace, Grace Hopper")
-        self.assertEqual(published.children[1], "Published: 2025-01-01")
-        self.assertEqual(summary.children[1], "Summary: A focused refactor.")
+        self.assertEqual(card.className, "article-card mb-3 shadow-sm")
+        self.assertEqual(title.children, "Typed callback orchestration")
+        self.assertEqual(metadata.children[0].children[2], "Ada Lovelace, Grace Hopper")
+        self.assertEqual(metadata.children[1].children, "cs.SE")
+        self.assertEqual(metadata.children[2].children[2], "2025-01-01")
+        self.assertEqual(metadata.children[3].children[2], "2501.00001v1")
+        self.assertEqual(abstract.children, "A focused refactor.")
+        self.assertEqual(read_pdf_button.children[1], "Read paper PDF")
+        self.assertEqual(
+            getattr(read_pdf_button, "aria-label"),
+            "Read PDF for Typed callback orchestration",
+        )
+        self.assertEqual(read_pdf_button.href, "http://arxiv.org/pdf/2501.00001v1")
+        self.assertEqual(read_pdf_button.target, "_blank")
 
     def test_render_article_card_uses_fallbacks(self):
         article = Article(
@@ -44,15 +61,72 @@ class ArticleCardTest(unittest.TestCase):
 
         card = render_article_card(article)
         body = card.children[0]
-        link = body.children[0].children[0]
-        authors = body.children[1].children[0]
-        published = body.children[1].children[1]
-        summary = body.children[2]
+        metadata = body.children[1]
+        abstract = body.children[2]
+        action_area = body.children[3]
+        arxiv_button = action_area.children[0]
 
-        self.assertEqual(link.href, "http://arxiv.org/abs/2501.00001v1")
-        self.assertEqual(authors.children[1], "Authors: Unknown")
-        self.assertEqual(published.children[1], "Published: Unknown")
-        self.assertEqual(summary.children[1], "Summary: No summary available")
+        self.assertEqual(metadata.children[0].children[2], "Unknown authors")
+        self.assertEqual(metadata.children[1].children[2], "Unknown date")
+        self.assertEqual(metadata.children[2].children[2], "2501.00001v1")
+        self.assertEqual(abstract.children, "No abstract available.")
+        self.assertEqual(arxiv_button.children[1], "View article on arXiv")
+        self.assertEqual(
+            getattr(arxiv_button, "aria-label"),
+            "View article on arXiv for Sparse paper",
+        )
+        self.assertEqual(arxiv_button.href, "http://arxiv.org/abs/2501.00001v1")
+
+    def test_render_article_card_omits_broken_action_when_links_missing(self):
+        article = Article(
+            id="",
+            title="Unlinked paper",
+            summary="Short abstract.",
+            authors=[],
+            published=None,
+            pdf_url=None,
+            category=None,
+        )
+
+        card = render_article_card(article)
+        action_area = card.children[0].children[3]
+
+        self.assertEqual(action_area.children[0].children, "No article link available")
+
+    def test_render_article_card_truncates_long_summary(self):
+        article = Article(
+            id="2501.00001v1",
+            title="Long paper",
+            summary="x" * (ABSTRACT_PREVIEW_LENGTH + 25),
+            authors=["Ada Lovelace"],
+            published="2025-01-01T00:00:00Z",
+            pdf_url=None,
+            category="cs.SE",
+        )
+
+        card = render_article_card(article)
+        abstract = card.children[0].children[2]
+
+        self.assertEqual(len(abstract.children), ABSTRACT_PREVIEW_LENGTH + 1)
+        self.assertTrue(abstract.children.endswith("…"))
+
+    def test_formatting_helpers_handle_readability_cases(self):
+        self.assertEqual(_format_authors([]), "Unknown authors")
+        self.assertEqual(
+            _format_authors(["Ada", "Grace", "Katherine", "Margaret"]),
+            "Ada, Grace, Katherine, +1 more",
+        )
+        self.assertEqual(_format_published(None), "Unknown date")
+        self.assertEqual(_format_published("2025-01-01T12:00:00Z"), "2025-01-01")
+        self.assertEqual(
+            _format_paper_identifier("http://arxiv.org/abs/hep-th/9901001v1"),
+            "hep-th/9901001v1",
+        )
+        self.assertEqual(_format_category(" cs.SE "), "cs.SE")
+        self.assertIsNone(_format_category(""))
+        self.assertEqual(
+            _truncate_text("\nA   compact abstract.\n"), "A compact abstract."
+        )
 
     def test_render_article_cards_renders_each_article(self):
         articles = [
@@ -63,10 +137,8 @@ class ArticleCardTest(unittest.TestCase):
         cards = render_article_cards(articles)
 
         self.assertEqual(len(cards), 2)
-        self.assertEqual(cards[0].children[0].children[0].children[0].children, "First")
-        self.assertEqual(
-            cards[1].children[0].children[0].children[0].children, "Second"
-        )
+        self.assertEqual(cards[0].children[0].children[0].children, "First")
+        self.assertEqual(cards[1].children[0].children[0].children, "Second")
 
 
 if __name__ == "__main__":

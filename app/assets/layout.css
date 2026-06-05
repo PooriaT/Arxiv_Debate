@@ -11,3 +11,175 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * https://bootswatch.com/solar/
  */
+
+.nav-link-custom {
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.nav-link-custom:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-link-custom.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+}
+
+.app-navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.page-content {
+    min-height: calc(100vh - 200px);
+    padding: 20px;
+}
+
+.footer {
+    margin-top: auto;
+    padding: 20px 0;
+    background-color: #f8f9fa;
+}
+
+.article-list {
+    max-height: 800px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.article-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.article-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.article-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.article-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.prose {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.summary-output {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.max-results-input {
+    max-width: 7rem;
+}
+
+.result-placeholder {
+    color: #6c757d;
+}
+
+.article-card-title {
+    line-height: 1.35;
+}
+
+.article-card-meta {
+    font-size: 0.875rem;
+}
+
+.article-card-meta-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+.article-card-category {
+    letter-spacing: 0.03em;
+}
+
+.article-card-id {
+    font-family: var(--bs-font-monospace);
+}
+
+.article-abstract-preview {
+    line-height: 1.55;
+}
+
+.search-form-controls {
+    display: flex;
+    gap: 0.75rem;
+    align-items: stretch;
+}
+
+.search-topic-input {
+    min-width: 0;
+}
+
+.search-form-controls .search-topic-input {
+    flex: 1 1 auto;
+}
+
+.search-submit-button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.article-card,
+.article-card * {
+    min-width: 0;
+}
+
+.article-card-title,
+.article-abstract-preview,
+.article-card-meta-item,
+.article-card-action {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.article-card-meta {
+    color: var(--bs-body-color);
+}
+
+@media (max-width: 575.98px) {
+    .page-content {
+        padding: 0.75rem;
+    }
+
+    .search-form-controls {
+        flex-direction: column;
+    }
+
+    .search-submit-button,
+    .max-results-input {
+        width: 100%;
+        max-width: none;
+    }
+
+    .article-list {
+        max-height: none;
+        overflow-y: visible;
+        padding-right: 0;
+    }
+
+    .app-navbar-brand {
+        font-size: 1.05rem;
+        white-space: normal;
+    }
+
+    .navbar-links {
+        gap: 0.25rem;
+        padding-top: 0.75rem;
+    }
+
+    .nav-link-custom {
+        margin: 0.125rem 0;
+        padding: 0.75rem 1rem;
+    }
+}
