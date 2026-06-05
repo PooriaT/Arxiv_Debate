@@ -96,9 +96,6 @@ layout = dbc.Container(
                                                                     placeholder="e.g., large language models",
                                                                     size="lg",
                                                                     className="search-topic-input",
-                                                                    **{
-                                                                        "aria-describedby": "search-help-text"
-                                                                    },
                                                                 ),
                                                                 dbc.Button(
                                                                     [
@@ -156,9 +153,6 @@ layout = dbc.Container(
                                                             value=10,
                                                             size="sm",
                                                             className="max-results-input mb-2",
-                                                            **{
-                                                                "aria-describedby": "max-results-help-text"
-                                                            },
                                                         ),
                                                         dbc.FormText(
                                                             "Fetch 5 to 50 papers. Larger result sets may take longer.",

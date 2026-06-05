@@ -20,7 +20,6 @@ def create_navbar():
                 dbc.NavbarToggler(
                     id="navbar-toggler",
                     n_clicks=0,
-                    **{"aria-label": "Toggle navigation menu"},
                 ),
                 dbc.Collapse(
                     dbc.Nav(
