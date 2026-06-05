@@ -4,6 +4,46 @@ import dash_bootstrap_components as dbc
 
 dash.register_page(__name__, path="/about", name="About", icon="fa-info-circle")
 
+
+GITHUB_REPOSITORY_URL = "https://github.com/PooriaT/Arxiv_Debate"
+ISSUE_TRACKER_URL = "https://github.com/PooriaT/Arxiv_Debate/issues"
+ARXIV_URL = "https://arxiv.org/"
+TWITTER_URL = "https://x.com/PooriaTaghdiri"
+DONATION_URL = "https://buymeacoffee.com/pooria7"
+
+
+def _section_heading(icon_class, title):
+    return html.H2(
+        [
+            html.I(
+                className=f"{icon_class} me-2 text-primary",
+                **{"aria-hidden": "true"},
+            ),
+            title,
+        ],
+        className="h4 card-title mb-3",
+    )
+
+
+def _link_item(icon_class, label, href):
+    return dbc.ListGroupItem(
+        [
+            html.I(
+                className=f"{icon_class} me-2",
+                **{"aria-hidden": "true"},
+            ),
+            html.A(
+                label,
+                href=href,
+                className="text-decoration-none",
+                target="_blank",
+                rel="noopener noreferrer",
+            ),
+        ],
+        className="d-flex align-items-center",
+    )
+
+
 layout = dbc.Container(
     [
         dbc.Row(
@@ -18,16 +58,75 @@ layout = dbc.Container(
                                 ),
                                 html.H1("About ArXiv Debate", className="mb-3"),
                                 html.P(
-                                    "Discover and analyze the latest research papers with AI-powered insights",
-                                    className="lead text-muted",
+                                    "A simple way to find arXiv papers on a topic, "
+                                    "review their abstracts, and get an AI-assisted "
+                                    "starting-point summary.",
+                                    className="lead text-muted mb-0",
                                 ),
                             ],
                             className="text-center py-5",
                         )
-                    ]
+                    ],
+                    lg=10,
+                    className="mx-auto",
                 )
             ],
-            className="mb-5",
+            className="mb-4",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Card(
+                            dbc.CardBody(
+                                [
+                                    _section_heading(
+                                        "fas fa-compass", "What ArXiv Debate does"
+                                    ),
+                                    html.P(
+                                        "ArXiv Debate helps researchers, students, and "
+                                        "curious readers quickly explore recent research "
+                                        "around a topic. Enter a research question or topic, "
+                                        "then use the returned papers and summary to decide "
+                                        "what to read next.",
+                                        className="lead mb-0",
+                                    ),
+                                ]
+                            ),
+                            className="shadow-sm h-100",
+                        )
+                    ],
+                    lg=6,
+                    className="mb-4",
+                ),
+                dbc.Col(
+                    [
+                        dbc.Card(
+                            dbc.CardBody(
+                                [
+                                    _section_heading("fas fa-database", "Data source"),
+                                    html.P(
+                                        [
+                                            "Paper metadata and abstracts come from ",
+                                            html.A(
+                                                "arXiv",
+                                                href=ARXIV_URL,
+                                                target="_blank",
+                                                rel="noopener noreferrer",
+                                            ),
+                                            ", an open repository for scholarly preprints.",
+                                        ],
+                                        className="lead mb-0",
+                                    ),
+                                ]
+                            ),
+                            className="shadow-sm h-100",
+                        )
+                    ],
+                    lg=6,
+                    className="mb-4",
+                ),
+            ]
         ),
         dbc.Row(
             [
@@ -35,30 +134,68 @@ layout = dbc.Container(
                     [
                         dbc.Card(
                             [
+                                dbc.CardHeader(
+                                    html.H2(
+                                        [
+                                            html.I(
+                                                className="fas fa-gears me-2 text-primary",
+                                                **{"aria-hidden": "true"},
+                                            ),
+                                            "How it works",
+                                        ],
+                                        className="h4 mb-0",
+                                    )
+                                ),
                                 dbc.CardBody(
                                     [
-                                        html.H3(
+                                        dbc.ListGroup(
                                             [
-                                                html.I(
-                                                    className="fas fa-rocket me-2 text-primary",
-                                                    **{"aria-hidden": "true"},
+                                                dbc.ListGroupItem(
+                                                    [
+                                                        html.Strong(
+                                                            "1. Search a topic. "
+                                                        ),
+                                                        "Type a research topic, question, or area "
+                                                        "you want to investigate.",
+                                                    ]
                                                 ),
-                                                "Our Mission",
+                                                dbc.ListGroupItem(
+                                                    [
+                                                        html.Strong(
+                                                            "2. Fetch related arXiv papers. "
+                                                        ),
+                                                        "The app searches arXiv for papers that "
+                                                        "match your topic.",
+                                                    ]
+                                                ),
+                                                dbc.ListGroupItem(
+                                                    [
+                                                        html.Strong(
+                                                            "3. Review paper details. "
+                                                        ),
+                                                        "Results show available metadata such as "
+                                                        "titles, authors, categories, dates, links, "
+                                                        "and abstracts.",
+                                                    ]
+                                                ),
+                                                dbc.ListGroupItem(
+                                                    [
+                                                        html.Strong(
+                                                            "4. Read the AI-assisted summary. "
+                                                        ),
+                                                        "The app uses the fetched paper information "
+                                                        "to generate a high-level synthesis that can "
+                                                        "help you spot themes and choose which papers "
+                                                        "to open first.",
+                                                    ]
+                                                ),
                                             ],
-                                            className="card-title mb-4",
-                                        ),
-                                        html.P(
-                                            """
-                        This is the AI-driven app to help you have an overview of recent Arxiv papers.
-                        It is only required to search the desired topic and the app will provide you
-                        with the summary of the most relevant papers.
-                        """,
-                                            className="lead",
-                                        ),
+                                            flush=True,
+                                        )
                                     ]
-                                )
+                                ),
                             ],
-                            className="shadow-sm mb-5",
+                            className="shadow-sm mb-4",
                         )
                     ]
                 )
@@ -71,18 +208,70 @@ layout = dbc.Container(
                         dbc.Card(
                             [
                                 dbc.CardHeader(
+                                    html.H2(
+                                        [
+                                            html.I(
+                                                className="fas fa-triangle-exclamation me-2 text-warning",
+                                                **{"aria-hidden": "true"},
+                                            ),
+                                            "AI summary limitations",
+                                        ],
+                                        className="h4 mb-0",
+                                    )
+                                ),
+                                dbc.CardBody(
                                     [
-                                        html.H3(
+                                        html.P(
+                                            "The summary is meant to be a reading aid, not "
+                                            "a substitute for the original research.",
+                                            className="lead",
+                                        ),
+                                        html.Ul(
                                             [
-                                                html.I(
-                                                    className="fas fa-link me-2 text-primary",
-                                                    **{"aria-hidden": "true"},
+                                                html.Li(
+                                                    "arXiv papers are preprints and may not have "
+                                                    "been peer reviewed."
                                                 ),
-                                                "Connect & Contribute",
+                                                html.Li(
+                                                    "AI summaries can be incomplete, outdated, "
+                                                    "misleading, or wrong."
+                                                ),
+                                                html.Li(
+                                                    "Read the original paper before relying on a "
+                                                    "claim, citing it, or using it to make a "
+                                                    "decision."
+                                                ),
                                             ],
                                             className="mb-0",
-                                        )
+                                        ),
                                     ]
+                                ),
+                            ],
+                            color="warning",
+                            outline=True,
+                            className="shadow-sm mb-4",
+                        )
+                    ]
+                )
+            ]
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Card(
+                            [
+                                dbc.CardHeader(
+                                    html.H2(
+                                        [
+                                            html.I(
+                                                className="fas fa-link me-2 text-primary",
+                                                **{"aria-hidden": "true"},
+                                            ),
+                                            "Project links",
+                                        ],
+                                        className="h4 mb-0",
+                                    )
                                 ),
                                 dbc.CardBody(
                                     [
@@ -90,146 +279,75 @@ layout = dbc.Container(
                                             [
                                                 dbc.Col(
                                                     [
-                                                        dbc.Card(
+                                                        html.H3(
                                                             [
-                                                                dbc.CardBody(
-                                                                    [
-                                                                        html.H5(
-                                                                            [
-                                                                                html.I(
-                                                                                    className="fab fa-github me-2",
-                                                                                    **{
-                                                                                        "aria-hidden": "true"
-                                                                                    },
-                                                                                ),
-                                                                                "GitHub",
-                                                                            ],
-                                                                            className="card-title",
-                                                                        ),
-                                                                        dbc.ListGroup(
-                                                                            [
-                                                                                dbc.ListGroupItem(
-                                                                                    [
-                                                                                        html.I(
-                                                                                            className="fas fa-code-branch me-2",
-                                                                                            **{
-                                                                                                "aria-hidden": "true"
-                                                                                            },
-                                                                                        ),
-                                                                                        html.A(
-                                                                                            "Project Repository",
-                                                                                            href="https://github.com/PooriaT/Arxiv_Debate",
-                                                                                            className="text-decoration-none",
-                                                                                            target="_blank",
-                                                                                            rel="noopener noreferrer",
-                                                                                        ),
-                                                                                    ],
-                                                                                    className="d-flex align-items-center",
-                                                                                ),
-                                                                                dbc.ListGroupItem(
-                                                                                    [
-                                                                                        html.I(
-                                                                                            className="fas fa-bug me-2",
-                                                                                            **{
-                                                                                                "aria-hidden": "true"
-                                                                                            },
-                                                                                        ),
-                                                                                        html.A(
-                                                                                            "Issue Tracker",
-                                                                                            href="https://github.com/PooriaT/Arxiv_Debate/issues",
-                                                                                            className="text-decoration-none",
-                                                                                            target="_blank",
-                                                                                            rel="noopener noreferrer",
-                                                                                        ),
-                                                                                    ],
-                                                                                    className="d-flex align-items-center",
-                                                                                ),
-                                                                            ],
-                                                                            flush=True,
-                                                                        ),
-                                                                    ]
-                                                                )
+                                                                html.I(
+                                                                    className="fab fa-github me-2",
+                                                                    **{
+                                                                        "aria-hidden": "true"
+                                                                    },
+                                                                ),
+                                                                "Contribute",
                                                             ],
-                                                            className="h-100 shadow-sm",
-                                                        )
+                                                            className="h5",
+                                                        ),
+                                                        dbc.ListGroup(
+                                                            [
+                                                                _link_item(
+                                                                    "fas fa-code-branch",
+                                                                    "GitHub repository",
+                                                                    GITHUB_REPOSITORY_URL,
+                                                                ),
+                                                                _link_item(
+                                                                    "fas fa-bug",
+                                                                    "Issue tracker",
+                                                                    ISSUE_TRACKER_URL,
+                                                                ),
+                                                            ],
+                                                            flush=True,
+                                                        ),
                                                     ],
                                                     md=6,
-                                                    className="mb-4",
+                                                    className="mb-4 mb-md-0",
                                                 ),
                                                 dbc.Col(
                                                     [
-                                                        dbc.Card(
+                                                        html.H3(
                                                             [
-                                                                dbc.CardBody(
-                                                                    [
-                                                                        html.H5(
-                                                                            [
-                                                                                html.I(
-                                                                                    className="fas fa-share-alt me-2",
-                                                                                    **{
-                                                                                        "aria-hidden": "true"
-                                                                                    },
-                                                                                ),
-                                                                                "Social",
-                                                                            ],
-                                                                            className="card-title",
-                                                                        ),
-                                                                        dbc.ListGroup(
-                                                                            [
-                                                                                dbc.ListGroupItem(
-                                                                                    [
-                                                                                        html.I(
-                                                                                            className="fab fa-twitter me-2",
-                                                                                            **{
-                                                                                                "aria-hidden": "true"
-                                                                                            },
-                                                                                        ),
-                                                                                        html.A(
-                                                                                            "Follow on X (Twitter)",
-                                                                                            href="https://x.com/PooriaTaghdiri",
-                                                                                            className="text-decoration-none",
-                                                                                            target="_blank",
-                                                                                            rel="noopener noreferrer",
-                                                                                        ),
-                                                                                    ],
-                                                                                    className="d-flex align-items-center",
-                                                                                ),
-                                                                                dbc.ListGroupItem(
-                                                                                    [
-                                                                                        html.I(
-                                                                                            className="fas fa-coffee me-2",
-                                                                                            **{
-                                                                                                "aria-hidden": "true"
-                                                                                            },
-                                                                                        ),
-                                                                                        html.A(
-                                                                                            "Buy me a Coffee",
-                                                                                            href="https://buymeacoffee.com/pooria7",
-                                                                                            className="text-decoration-none",
-                                                                                            target="_blank",
-                                                                                            rel="noopener noreferrer",
-                                                                                        ),
-                                                                                    ],
-                                                                                    className="d-flex align-items-center",
-                                                                                ),
-                                                                            ],
-                                                                            flush=True,
-                                                                        ),
-                                                                    ]
-                                                                )
+                                                                html.I(
+                                                                    className="fas fa-share-alt me-2",
+                                                                    **{
+                                                                        "aria-hidden": "true"
+                                                                    },
+                                                                ),
+                                                                "Connect",
                                                             ],
-                                                            className="h-100 shadow-sm",
-                                                        )
+                                                            className="h5",
+                                                        ),
+                                                        dbc.ListGroup(
+                                                            [
+                                                                _link_item(
+                                                                    "fab fa-twitter",
+                                                                    "Follow on X (Twitter)",
+                                                                    TWITTER_URL,
+                                                                ),
+                                                                _link_item(
+                                                                    "fas fa-coffee",
+                                                                    "Buy me a Coffee",
+                                                                    DONATION_URL,
+                                                                ),
+                                                            ],
+                                                            flush=True,
+                                                        ),
                                                     ],
                                                     md=6,
-                                                    className="mb-4",
                                                 ),
                                             ]
                                         )
                                     ]
                                 ),
                             ],
-                            className="shadow mb-5",
+                            className="shadow-sm mb-5",
                         )
                     ]
                 )
