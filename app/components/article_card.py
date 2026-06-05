@@ -14,19 +14,20 @@ def render_article_card(article: Article):
     arxiv_url = _format_arxiv_url(article.id)
     pdf_url = _normalize_optional_text(article.pdf_url)
     paper_identifier = _format_paper_identifier(article.id)
-    action = _render_action(pdf_url, arxiv_url)
+    article_title = article.title or "Untitled article"
+    action = _render_action(pdf_url, arxiv_url, article_title)
 
     return dbc.Card(
         [
             dbc.CardBody(
                 [
                     html.H5(
-                        article.title or "Untitled article",
+                        article_title,
                         className="card-title article-card-title mb-2",
                     ),
                     html.Div(
                         _render_metadata(article, paper_identifier),
-                        className="article-card-meta text-muted d-flex flex-wrap align-items-center gap-2 mb-3",
+                        className="article-card-meta d-flex flex-wrap align-items-center gap-2 mb-3",
                     ),
                     html.P(
                         _truncate_text(article.summary or "No abstract available."),
@@ -51,14 +52,16 @@ def _render_metadata(article: Article, paper_identifier: str | None):
     metadata = [
         html.Span(
             [
-                html.I(className="fas fa-users me-1"),
+                html.I(className="fas fa-users me-1", **{"aria-hidden": "true"}),
+                html.Span("Authors: ", className="fw-semibold"),
                 _format_authors(article.authors),
             ],
             className="article-card-meta-item",
         ),
         html.Span(
             [
-                html.I(className="fas fa-calendar me-1"),
+                html.I(className="fas fa-calendar me-1", **{"aria-hidden": "true"}),
+                html.Span("Published: ", className="fw-semibold"),
                 _format_published(article.published),
             ],
             className="article-card-meta-item",
@@ -80,7 +83,10 @@ def _render_metadata(article: Article, paper_identifier: str | None):
         metadata.append(
             html.Span(
                 [
-                    html.I(className="fas fa-fingerprint me-1"),
+                    html.I(
+                        className="fas fa-fingerprint me-1", **{"aria-hidden": "true"}
+                    ),
+                    html.Span("arXiv ID: ", className="fw-semibold"),
                     paper_identifier,
                 ],
                 className="article-card-meta-item article-card-id",
@@ -90,29 +96,44 @@ def _render_metadata(article: Article, paper_identifier: str | None):
     return metadata
 
 
-def _render_action(pdf_url: str | None, arxiv_url: str | None):
+def _render_action(pdf_url: str | None, arxiv_url: str | None, article_title: str):
     if pdf_url:
         return [
             dbc.Button(
-                [html.I(className="fas fa-file-pdf me-2"), "Read PDF"],
+                [
+                    html.I(className="fas fa-file-pdf me-2", **{"aria-hidden": "true"}),
+                    "Read paper PDF",
+                ],
                 href=pdf_url,
                 target="_blank",
                 color="primary",
                 size="sm",
                 className="article-card-action",
+                **{"aria-label": _format_action_label("Read PDF for", article_title)},
             )
         ]
 
     if arxiv_url:
         return [
             dbc.Button(
-                [html.I(className="fas fa-external-link-alt me-2"), "View on arXiv"],
+                [
+                    html.I(
+                        className="fas fa-external-link-alt me-2",
+                        **{"aria-hidden": "true"},
+                    ),
+                    "View article on arXiv",
+                ],
                 href=arxiv_url,
                 target="_blank",
                 color="secondary",
                 outline=True,
                 size="sm",
                 className="article-card-action",
+                **{
+                    "aria-label": _format_action_label(
+                        "View article on arXiv for", article_title
+                    )
+                },
             )
         ]
 
@@ -197,3 +218,7 @@ def _format_paper_identifier(article_id: str | None) -> str | None:
 def _normalize_optional_text(value: str | None) -> str | None:
     normalized = (value or "").strip()
     return normalized or None
+
+
+def _format_action_label(prefix: str, article_title: str) -> str:
+    return f"{prefix} {article_title}"

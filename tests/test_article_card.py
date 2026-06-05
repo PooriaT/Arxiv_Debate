@@ -35,12 +35,16 @@ class ArticleCardTest(unittest.TestCase):
 
         self.assertEqual(card.className, "article-card mb-3 shadow-sm")
         self.assertEqual(title.children, "Typed callback orchestration")
-        self.assertEqual(metadata.children[0].children[1], "Ada Lovelace, Grace Hopper")
+        self.assertEqual(metadata.children[0].children[2], "Ada Lovelace, Grace Hopper")
         self.assertEqual(metadata.children[1].children, "cs.SE")
-        self.assertEqual(metadata.children[2].children[1], "2025-01-01")
-        self.assertEqual(metadata.children[3].children[1], "2501.00001v1")
+        self.assertEqual(metadata.children[2].children[2], "2025-01-01")
+        self.assertEqual(metadata.children[3].children[2], "2501.00001v1")
         self.assertEqual(abstract.children, "A focused refactor.")
-        self.assertEqual(read_pdf_button.children[1], "Read PDF")
+        self.assertEqual(read_pdf_button.children[1], "Read paper PDF")
+        self.assertEqual(
+            getattr(read_pdf_button, "aria-label"),
+            "Read PDF for Typed callback orchestration",
+        )
         self.assertEqual(read_pdf_button.href, "http://arxiv.org/pdf/2501.00001v1")
         self.assertEqual(read_pdf_button.target, "_blank")
 
@@ -62,11 +66,15 @@ class ArticleCardTest(unittest.TestCase):
         action_area = body.children[3]
         arxiv_button = action_area.children[0]
 
-        self.assertEqual(metadata.children[0].children[1], "Unknown authors")
-        self.assertEqual(metadata.children[1].children[1], "Unknown date")
-        self.assertEqual(metadata.children[2].children[1], "2501.00001v1")
+        self.assertEqual(metadata.children[0].children[2], "Unknown authors")
+        self.assertEqual(metadata.children[1].children[2], "Unknown date")
+        self.assertEqual(metadata.children[2].children[2], "2501.00001v1")
         self.assertEqual(abstract.children, "No abstract available.")
-        self.assertEqual(arxiv_button.children[1], "View on arXiv")
+        self.assertEqual(arxiv_button.children[1], "View article on arXiv")
+        self.assertEqual(
+            getattr(arxiv_button, "aria-label"),
+            "View article on arXiv for Sparse paper",
+        )
         self.assertEqual(arxiv_button.href, "http://arxiv.org/abs/2501.00001v1")
 
     def test_render_article_card_omits_broken_action_when_links_missing(self):

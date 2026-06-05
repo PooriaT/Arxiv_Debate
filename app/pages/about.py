@@ -1,5 +1,5 @@
 import dash
-from dash import html, dcc
+from dash import html
 import dash_bootstrap_components as dbc
 
 dash.register_page(__name__, path="/about", name="About", icon="fa-info-circle")
@@ -13,7 +13,8 @@ layout = dbc.Container(
                         html.Div(
                             [
                                 html.I(
-                                    className="fas fa-book-reader fa-3x mb-3 text-primary"
+                                    className="fas fa-book-reader fa-3x mb-3 text-primary",
+                                    **{"aria-hidden": "true"},
                                 ),
                                 html.H1("About ArXiv Debate", className="mb-3"),
                                 html.P(
@@ -39,7 +40,8 @@ layout = dbc.Container(
                                         html.H3(
                                             [
                                                 html.I(
-                                                    className="fas fa-rocket me-2 text-primary"
+                                                    className="fas fa-rocket me-2 text-primary",
+                                                    **{"aria-hidden": "true"},
                                                 ),
                                                 "Our Mission",
                                             ],
@@ -73,7 +75,8 @@ layout = dbc.Container(
                                         html.H3(
                                             [
                                                 html.I(
-                                                    className="fas fa-link me-2 text-primary"
+                                                    className="fas fa-link me-2 text-primary",
+                                                    **{"aria-hidden": "true"},
                                                 ),
                                                 "Connect & Contribute",
                                             ],
@@ -94,7 +97,10 @@ layout = dbc.Container(
                                                                         html.H5(
                                                                             [
                                                                                 html.I(
-                                                                                    className="fab fa-github me-2"
+                                                                                    className="fab fa-github me-2",
+                                                                                    **{
+                                                                                        "aria-hidden": "true"
+                                                                                    },
                                                                                 ),
                                                                                 "GitHub",
                                                                             ],
@@ -105,13 +111,17 @@ layout = dbc.Container(
                                                                                 dbc.ListGroupItem(
                                                                                     [
                                                                                         html.I(
-                                                                                            className="fas fa-code-branch me-2"
+                                                                                            className="fas fa-code-branch me-2",
+                                                                                            **{
+                                                                                                "aria-hidden": "true"
+                                                                                            },
                                                                                         ),
-                                                                                        dcc.Link(
+                                                                                        html.A(
                                                                                             "Project Repository",
                                                                                             href="https://github.com/PooriaT/Arxiv_Debate",
                                                                                             className="text-decoration-none",
                                                                                             target="_blank",
+                                                                                            rel="noopener noreferrer",
                                                                                         ),
                                                                                     ],
                                                                                     className="d-flex align-items-center",
@@ -119,13 +129,17 @@ layout = dbc.Container(
                                                                                 dbc.ListGroupItem(
                                                                                     [
                                                                                         html.I(
-                                                                                            className="fas fa-bug me-2"
+                                                                                            className="fas fa-bug me-2",
+                                                                                            **{
+                                                                                                "aria-hidden": "true"
+                                                                                            },
                                                                                         ),
-                                                                                        dcc.Link(
+                                                                                        html.A(
                                                                                             "Issue Tracker",
                                                                                             href="https://github.com/PooriaT/Arxiv_Debate/issues",
                                                                                             className="text-decoration-none",
                                                                                             target="_blank",
+                                                                                            rel="noopener noreferrer",
                                                                                         ),
                                                                                     ],
                                                                                     className="d-flex align-items-center",
@@ -151,7 +165,10 @@ layout = dbc.Container(
                                                                         html.H5(
                                                                             [
                                                                                 html.I(
-                                                                                    className="fas fa-share-alt me-2"
+                                                                                    className="fas fa-share-alt me-2",
+                                                                                    **{
+                                                                                        "aria-hidden": "true"
+                                                                                    },
                                                                                 ),
                                                                                 "Social",
                                                                             ],
@@ -162,13 +179,17 @@ layout = dbc.Container(
                                                                                 dbc.ListGroupItem(
                                                                                     [
                                                                                         html.I(
-                                                                                            className="fab fa-twitter me-2"
+                                                                                            className="fab fa-twitter me-2",
+                                                                                            **{
+                                                                                                "aria-hidden": "true"
+                                                                                            },
                                                                                         ),
-                                                                                        dcc.Link(
+                                                                                        html.A(
                                                                                             "Follow on X (Twitter)",
                                                                                             href="https://x.com/PooriaTaghdiri",
                                                                                             className="text-decoration-none",
                                                                                             target="_blank",
+                                                                                            rel="noopener noreferrer",
                                                                                         ),
                                                                                     ],
                                                                                     className="d-flex align-items-center",
@@ -176,13 +197,17 @@ layout = dbc.Container(
                                                                                 dbc.ListGroupItem(
                                                                                     [
                                                                                         html.I(
-                                                                                            className="fas fa-coffee me-2"
+                                                                                            className="fas fa-coffee me-2",
+                                                                                            **{
+                                                                                                "aria-hidden": "true"
+                                                                                            },
                                                                                         ),
-                                                                                        dcc.Link(
+                                                                                        html.A(
                                                                                             "Buy me a Coffee",
                                                                                             href="https://buymeacoffee.com/pooria7",
                                                                                             className="text-decoration-none",
                                                                                             target="_blank",
+                                                                                            rel="noopener noreferrer",
                                                                                         ),
                                                                                     ],
                                                                                     className="d-flex align-items-center",
