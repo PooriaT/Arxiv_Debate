@@ -9,7 +9,7 @@ from typing import Any
 import requests
 
 
-ARXIV_API_BASE_URL = "http://export.arxiv.org/api/query"
+ARXIV_API_BASE_URL = "https://export.arxiv.org/api/query"
 DEFAULT_USER_AGENT = "arxiv-debate/0.1"
 DEFAULT_TIMEOUT_SECONDS = (10, 60)
 DEFAULT_RATE_LIMIT_RETRY_SECONDS = 3.0
